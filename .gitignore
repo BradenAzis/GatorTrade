@@ -1,0 +1,75 @@
+# --- Node.js Backend ---
+# Dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# Build output
+build/
+dist/
+
+# Cache
+.cache/
+tmp/
+*.tmp
+
+# --- React Frontend ---
+# Dependencies
+/frontend/node_modules/
+
+# Build output
+/frontend/build/
+
+# Static file cache
+/frontend/.parcel-cache/
+*.cache
+
+# Environment variables
+/frontend/.env
+/frontend/.env.local
+/frontend/.env.development
+/frontend/.env.production
+/frontend/.env.test
+
+# Logs
+/frontend/logs/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# --- Operating System and IDE Files ---
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.iml
+
+# --- Others ---
+# Optional npm-debug log
+npm-debug.log*
+
+# Ignore local eslint cache
+.eslintcache
+
+# Ignore coverage reports
+coverage/
+
+# Ignore other system files
+*.swp
+*.swo
+*.bak
+*.tmp

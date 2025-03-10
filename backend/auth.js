@@ -13,6 +13,10 @@ passport.use(
       },
       function(request, accessToken, refreshToken, profile, done){
         //TODO: Add user to database here based on valid UFL email
+        const email = profile.emails[0].value; // Extract user email
+        if (!email.endsWith("@ufl.edu")) {
+          return done(null, false, { message: "Only @ufl.edu emails are allowed" });
+        }
         return done(null, profile);
       }
     ));

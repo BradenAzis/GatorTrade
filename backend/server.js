@@ -15,8 +15,8 @@ function isLoggedIn(req, res, next){
 const app = express();
 app.use(session({ //client session management
   secret: process.env.SESSION_SECRET, //secret used to create session ID cookie
-  resave: true,
-  saveUninitialized: true,
+  resave: false,
+  saveUninitialized: false,
   cookie:{maxAge: 1000 * 60 * 60} //cookie lasts 1 hour (1000ms * 60 * 60)
 }));
 app.use(passport.initialize());
@@ -37,12 +37,12 @@ app.get("/google/callback",
 )
 
 app.get("/protected", isLoggedIn, (req, res) => { //example protected route
-  res.send(`Hello ${req.user.name.givenName} ${req.user.name.familyName}!`);
+  res.send(`Hello ${req.user.firstName} ${req.user.lastName}!`);
   console.log(req.user);
 });
 
 app.get("/auth/failure", (req, res) => {
-  res.send("something went wrong");
+  res.send("Something went wrong. Make sure to sign in with a valid ufl email adress.");
 });
 
 app.get("/logout", (req, res, next) => {

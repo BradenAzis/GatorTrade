@@ -1,6 +1,7 @@
 require('dotenv').config();
 const passport = require("passport");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const User = require('./models/GoogleUser'); // Import Mongoose model
 
 passport.use(
     //Define authentication strategy
@@ -11,13 +12,28 @@ passport.use(
         callbackURL: "http://localhost:5000/google/callback",
         passReqToCallback: true
       },
-      function(request, accessToken, refreshToken, profile, done){
-        //TODO: Add user to database here based on valid UFL email
+      async(request, accessToken, refreshToken, profile, done) => {
         const email = profile.emails[0].value; // Extract user email
         if (!email.endsWith("@ufl.edu")) {
           return done(null, false, { message: "Only @ufl.edu emails are allowed" });
         }
-        return done(null, profile);
+        try {
+          // Check if user exists
+          let user = await User.findOne({ googleId: profile.id });
+          if (!user) {
+            // Create new user if not found
+            user = new User({
+              googleId: profile.id,
+              firstName: profile.name.givenName,
+              lastName: profile.name.familyName,
+              email: profile.emails[0].value,
+            });
+            await user.save();
+          }
+          return done(null, user); // Proceed with user
+        } catch (err) {
+          return done(err, null);
+        }
       }
     ));
 

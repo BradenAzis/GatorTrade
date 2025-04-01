@@ -4,13 +4,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const passport = require("passport");
+const listingRoutes = require("./routes/listings");
+const isLoggedIn = require("./middleware/authMiddleware");
 require("./auth");
 require("dotenv").config();
-
-//protect routes with this function. Only authenticated users will have access
-function isLoggedIn(req, res, next){
-  req.user ? next() : res.sendStatus(401); //send unauthorized if not logged in
-}
 
 const app = express();
 app.use(session({ //client session management
@@ -24,6 +21,7 @@ app.use(passport.session());
 app.use(express.json());
 app.use(cors());
 app.use("/users", userRoutes);
+app.use("/listings", listingRoutes);
 
 app.get("/auth/google", //go to this route for google login prompt 
   passport.authenticate("google", {scope: ['email', 'profile']})
@@ -68,5 +66,5 @@ app.get("/", (req, res) => {
   res.send("<a href='/auth/google'>Authenticate with Google</a>");
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

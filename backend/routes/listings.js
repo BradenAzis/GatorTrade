@@ -8,13 +8,14 @@ const isLoggedIn = require("../middleware/authMiddleware");
 router.post("/", isLoggedIn, async (req, res) => {
   try {
     //console.log("User in request:", req.user); // check req.user info
-    const { title, description, price, images} = req.body;
+    const { title, description, price, images, tags} = req.body;
     const newListing = new Listing({ 
       user: req.user._id,
       title, 
       description, 
       price, 
-      images 
+      images,
+      tags 
     });
     await newListing.save();
     res.status(201).json(newListing);
@@ -37,6 +38,39 @@ router.put("/:id", isLoggedIn, async (req, res) => {
     res.json(listing);
   } catch (error) {
     res.status(500).json({ message: "Error updating listing", error });
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const listing = await Listing.findById(req.params.id).populate("user", "firstName lastName email");
+    if (!listing) return res.status(404).json({ message: "Listing not found" });
+    res.json(listing);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching listing", error });
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const {search, tags, maxPrice} = req.query;
+    let query = {};
+    // Search by listing title (case-insensitive)
+    if (search) {
+      query.title = { $regex: search, $options: "i" };
+    }
+    // Filter by tags
+    if (tags) {
+      query.tags = { $in: tags.split(",") };
+    }
+    // Filter by max price
+    if (maxPrice) {
+      query.price = { $lte: parseFloat(maxPrice) }; // Ensure it's a number
+    }
+    const listings = await Listing.find(query).populate("user", "firstName lastName email"); // Populate seller details
+    res.json(listings);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching listings", error });
   }
 });
 

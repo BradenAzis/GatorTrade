@@ -2,9 +2,10 @@
 const express = require("express");
 const router = express.Router();
 const Listing = require("../models/Listing");
+const GoogleUser = require("../models/GoogleUser");
 const isLoggedIn = require("../middleware/authMiddleware");
 
-// Create a new listing (protected route)
+// create a new listing (protected route)
 router.post("/", isLoggedIn, async (req, res) => {
   try {
     //console.log("User in request:", req.user); // check req.user info
@@ -24,33 +25,7 @@ router.post("/", isLoggedIn, async (req, res) => {
   }
 });
 
-// Update a listing (only the owner can update)
-router.put("/:id", isLoggedIn, async (req, res) => {
-  try {
-    const listing = await Listing.findById(req.params.id);
-    if (!listing) return res.status(404).json({ message: "Listing not found" });
-
-    if (listing.user.toString() !== req.user._id)
-      return res.status(403).json({ message: "Unauthorized" });
-
-    Object.assign(listing, req.body);
-    await listing.save();
-    res.json(listing);
-  } catch (error) {
-    res.status(500).json({ message: "Error updating listing", error });
-  }
-});
-
-router.get("/:id", async (req, res) => {
-  try {
-    const listing = await Listing.findById(req.params.id).populate("user", "firstName lastName email");
-    if (!listing) return res.status(404).json({ message: "Listing not found" });
-    res.json(listing);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching listing", error });
-  }
-});
-
+// get all listings or filter by search, maxPrice, or tags
 router.get("/", async (req, res) => {
   try {
     const {search, tags, maxPrice} = req.query;
@@ -74,7 +49,80 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Delete a listing (only the owner can delete)
+// get favorite listings
+router.get("/favorites", isLoggedIn, async (req, res) => {
+  try {
+    const user = await GoogleUser.findById(req.user._id).populate({ path: "favorites", populate: { path: "user", model: "GoogleUser", select: "firstName lastName email"} });
+    res.json(user.favorites);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching favorites", err });
+  }
+});
+
+// remove a listing from "favorites"
+router.delete("/favorites/:listingId", isLoggedIn, async (req, res) => {
+  try {
+    const user = await GoogleUser.findById(req.user._id);
+    user.favorites = user.favorites.filter(
+      (id) => id.toString() !== req.params.listingId
+    );
+    await user.save();
+
+    res.json({ message: "Favorite removed", favorites: user.favorites });
+  } catch (err) {
+    res.status(500).json({ message: "Error removing favorite", err });
+  }
+});
+
+//GENERICS BELOW
+//==================================================================================================================
+
+// add a listing to "favorites"
+router.post("/favorites/:listingId", isLoggedIn, async (req, res) => {
+  try {
+    const user = await GoogleUser.findById(req.user._id);
+    const { listingId } = req.params;
+
+    if (!user.favorites.includes(listingId)) {
+      user.favorites.push(listingId);
+      await user.save();
+    }
+
+    res.json({ message: "Listing favorited!", favorites: user.favorites });
+  } catch (err) {
+    res.status(500).json({ message: "Error adding favorite", err });
+  }
+});
+
+// get specific listing by ID
+router.get("/:id", async (req, res) => {
+  try {
+    const listing = await Listing.findById(req.params.id).populate("user", "firstName lastName email");
+    if (!listing) return res.status(404).json({ message: "Listing not found" });
+    res.json(listing);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching listing", error });
+  }
+});
+
+// update a listing (only the owner can update)
+router.put("/:id", isLoggedIn, async (req, res) => {
+  try {
+    const listing = await Listing.findById(req.params.id);
+    if (!listing) return res.status(404).json({ message: "Listing not found" });
+
+    if (listing.user.toString() !== req.user._id)
+      return res.status(403).json({ message: "Unauthorized" });
+
+    Object.assign(listing, req.body);
+    await listing.save();
+    res.json(listing);
+  } catch (error) {
+    res.status(500).json({ message: "Error updating listing", error });
+  }
+});
+
+// delete a listing (only the owner can delete)
 router.delete("/:id", isLoggedIn, async (req, res) => {
   try {
     const listing = await Listing.findById(req.params.id);

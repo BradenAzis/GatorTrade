@@ -27,6 +27,7 @@ passport.use(
               firstName: profile.name.givenName,
               lastName: profile.name.familyName,
               email: profile.emails[0].value,
+              favorites: [],
             });
             await user.save();
           }

@@ -31,6 +31,7 @@ router.get("/", async (req, res) => {
     const {search, tags, maxPrice} = req.query;
     let query = {};
     // Search by listing title (case-insensitive)
+    // BUG/UNINTENDED BEHAVIOR: only finds the first instance of the listing with the search keyword. Should return all listings with that word
     if (search) {
       query.title = { $regex: search, $options: "i" };
     }

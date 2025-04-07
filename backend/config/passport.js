@@ -1,7 +1,7 @@
 require('dotenv').config();
 const passport = require("passport");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const User = require('./models/GoogleUser'); // Import Mongoose model
+const User = require('../models/GoogleUser'); // Import Mongoose model
 
 passport.use(
     //Define authentication strategy
@@ -9,7 +9,7 @@ passport.use(
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:5000/google/callback",
+        callbackURL: "http://localhost:5001/auth/google/callback",
         passReqToCallback: true
       },
       async(request, accessToken, refreshToken, profile, done) => {
@@ -27,6 +27,7 @@ passport.use(
               firstName: profile.name.givenName,
               lastName: profile.name.familyName,
               email: profile.emails[0].value,
+              favorites: [],
             });
             await user.save();
           }

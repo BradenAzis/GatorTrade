@@ -18,6 +18,17 @@
   color: mediumspringgreen;
   font-family: "Gill Sans", sans-serif;
   margin-bottom: 5vmin;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ContentSubHeader {
+  font-size: 4vmin;
+  color: mediumspringgreen;
+  font-family: "Gill Sans", sans-serif;
+  margin-bottom: 5vmin;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ContentParagraph {
@@ -32,13 +43,16 @@
   font-family: "Gill Sans", sans-serif;
   color: black;
   line-height: 5vmin;
-  flex: 1;
+  flex: 1 1 60vmin;
+  min-width: 50vmin;
 }
 
 .ParagraphVisual {
   width: 40vmin;
   height: 45vmin;
   padding: 2vmin;
+  margin-left: auto;
+  margin-bottom: 2vmin;
 }
 
 .PageButton {
@@ -61,6 +75,19 @@
     color: mediumspringgreen;
     text-decoration: none;
   }
+}
+
+.SearchBar input[type=text]{
+  display: flex;
+  margin-bottom:5vmin;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 6px;
+  background-color: white;
+  width: 50vw;
+  font-size: 3vmin;
+  border-radius: 20px;
+  border-color: mediumspringgreen;
 }
 
 .App-logo {

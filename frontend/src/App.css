@@ -1,27 +1,72 @@
-.App {
-  text-align: center;
+.NavBar {
+  margin-top: 1vmin;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.PageContent {
+  display: flex;
+  flex-direction: column;
+  margin: 5vmin 15vmin;
+  align-content: start;
+  justify-content: center;
+}
+
+.ContentHeader {
+  font-size: 8vmin;
+  color: mediumspringgreen;
+  font-family: "Gill Sans", sans-serif;
+  margin-bottom: 5vmin;
+}
+
+.ContentParagraph {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.ParagraphText {
+  margin: 0;
+  font-size: 3vmin;
+  font-family: "Gill Sans", sans-serif;
+  color: black;
+  line-height: 5vmin;
+  flex: 1;
+}
+
+.ParagraphVisual {
+  width: 40vmin;
+  height: 45vmin;
+  padding: 2vmin;
 }
 
 .PageButton {
-  font-size: 18px;
-  padding: 10px;
-  color: mediumspringgreen;
-  background: whitesmoke;
+  display: flex;
+  font-size: calc(10px + 2vmin);
   font-family: "Gill Sans MT", sans-serif;
+  gap: 20px;
+  color: mediumspringgreen;
   cursor: pointer;
+  padding: 10px;
+  margin-right: 10px;
+  float: right;
 
+  a:visited {
+    color: mediumspringgreen;
+    text-decoration: none;
+  }
 
-  &:hover {
-    background: #bbfaef;
+  a:link {
+    color: mediumspringgreen;
+    text-decoration: none;
   }
 }
 
 .App-logo {
-  position: absolute;
-  display: block;
-  text-align: left;
+  padding: 5px;
   pointer-events: none;
-  font-size: calc(10px + 2vmin);
+  font-size: 5vmin;
   font-family: "Gill Sans MT", sans-serif;
   color: mediumspringgreen;
   margin-left: 1vw;
@@ -35,5 +80,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  text-align: center;
   color: #090a12;
 }

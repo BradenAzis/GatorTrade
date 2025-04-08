@@ -1,3 +1,19 @@
+@font-face {
+  font-family: Quasimoda;
+  src:url("resources/fonts/Quasimoda Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Articulat;
+  src:url("resources/fonts/ArticulatCF-Medium.ttf") format("truetype");
+}
+
+:root {
+  --SwampGreen: #4C704F;
+  --GatorGreen: #95F09B;
+  --Mint: #DBF0E3;
+}
+
 .NavBar {
   margin-top: 1vmin;
   display: flex;
@@ -15,8 +31,8 @@
 
 .ContentHeader {
   font-size: 8vmin;
-  color: mediumspringgreen;
-  font-family: "Gill Sans", sans-serif;
+  color: var(--GatorGreen);
+  font-family: "Quasimoda", sans-serif;
   margin-bottom: 5vmin;
 }
 
@@ -29,7 +45,7 @@
 .ParagraphText {
   margin: 0;
   font-size: 3vmin;
-  font-family: "Gill Sans", sans-serif;
+  font-family: "Articulat", sans-serif;
   color: black;
   line-height: 5vmin;
   flex: 1;
@@ -44,32 +60,29 @@
 .PageButton {
   display: flex;
   font-size: calc(10px + 2vmin);
-  font-family: "Gill Sans MT", sans-serif;
+  font-family: "Quasimoda", sans-serif;
   gap: 20px;
-  color: mediumspringgreen;
+  color: var(--GatorGreen);
   cursor: pointer;
   padding: 10px;
   margin-right: 10px;
   float: right;
 
   a:visited {
-    color: mediumspringgreen;
+    color: var(--GatorGreen);
     text-decoration: none;
   }
 
   a:link {
-    color: mediumspringgreen;
+    color: var(--GatorGreen);
     text-decoration: none;
   }
 }
 
-.App-logo {
-  padding: 5px;
-  pointer-events: none;
-  font-size: 5vmin;
-  font-family: "Gill Sans MT", sans-serif;
-  color: mediumspringgreen;
-  margin-left: 1vw;
+.App-logo img{
+  margin-left: 1vmin;
+  max-height: 50vmin;
+  max-width: 50vmin;
 }
 
 .App-header {

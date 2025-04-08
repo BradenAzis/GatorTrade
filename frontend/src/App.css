@@ -38,10 +38,34 @@
   margin-right: auto;
 }
 
+.NavBar {
+  margin-top: 1vmin;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.PageContent {
+  display: flex;
+  flex-direction: column;
+  margin: 5vmin 15vmin;
+  align-content: start;
+  justify-content: center;
+}
+
+.ContentHeader {
+  font-size: 8vmin;
+  color: var(--GatorGreen);
+  font-family: "Quasimoda", sans-serif;
+  margin-bottom: 5vmin;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .ContentSubHeader {
   font-size: 4vmin;
-  color: mediumspringgreen;
-  font-family: "Gill Sans", sans-serif;
+  color: var(--GatorGreen);
+  font-family: "Quasimoda", sans-serif;
   margin-bottom: 5vmin;
   margin-left: auto;
   margin-right: auto;
@@ -93,7 +117,7 @@
   }
 }
 
-.SearchBar input [ type = text ] {
+.SearchBar input[type=text]{
   display: flex;
   margin-bottom: 5vmin;
   margin-left: auto;
@@ -103,7 +127,7 @@
   width: 50vw;
   font-size: 3vmin;
   border-radius: 20px;
-  border-color: mediumspringgreen;
+  border-color: var(--GatorGreen);
 }
 
 .App-logo img {

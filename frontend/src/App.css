@@ -34,6 +34,17 @@
   color: var(--GatorGreen);
   font-family: "Quasimoda", sans-serif;
   margin-bottom: 5vmin;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ContentSubHeader {
+  font-size: 4vmin;
+  color: mediumspringgreen;
+  font-family: "Gill Sans", sans-serif;
+  margin-bottom: 5vmin;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ContentParagraph {
@@ -48,13 +59,16 @@
   font-family: "Articulat", sans-serif;
   color: black;
   line-height: 5vmin;
-  flex: 1;
+  flex: 1 1 60vmin;
+  min-width: 50vmin;
 }
 
 .ParagraphVisual {
   width: 40vmin;
   height: 45vmin;
   padding: 2vmin;
+  margin-left: auto;
+  margin-bottom: 2vmin;
 }
 
 .PageButton {
@@ -79,20 +93,42 @@
   }
 }
 
-.App-logo img{
+.SearchBar input [ type = text ] {
+  display: flex;
+  margin-bottom: 5vmin;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 6px;
+  background-color: white;
+  width: 50vw;
+  font-size: 3vmin;
+  border-radius: 20px;
+  border-color: mediumspringgreen;
+}
+
+.App-logo img {
   margin-left: 1vmin;
   max-height: 50vmin;
   max-width: 50vmin;
-}
 
-.App-header {
-  background-color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  text-align: center;
-  color: #090a12;
+  .App-logo {
+    padding: 5px;
+    pointer-events: none;
+    font-size: 5vmin;
+    font-family: "Gill Sans MT", sans-serif;
+    color: mediumspringgreen;
+    margin-left: 1vw;
+  }
+
+  .App-header {
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    text-align: center;
+    color: #090a12;
+  }
 }

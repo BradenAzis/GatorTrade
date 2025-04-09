@@ -135,15 +135,6 @@
   max-height: 50vmin;
   max-width: 50vmin;
 
-  .App-logo {
-    padding: 5px;
-    pointer-events: none;
-    font-size: 5vmin;
-    font-family: "Gill Sans MT", sans-serif;
-    color: mediumspringgreen;
-    margin-left: 1vw;
-  }
-
   .App-header {
     background-color: white;
     min-height: 100vh;
@@ -154,5 +145,21 @@
     font-size: calc(10px + 2vmin);
     text-align: center;
     color: #090a12;
+  }
+
+  .UserListings {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1vmin;
+    margin-top: 5vmin;
+  }
+
+  .Card {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    border: 1px solid var(--SwampGreen);
+    background-color: white;
+    padding: 1vmin;
   }
 }

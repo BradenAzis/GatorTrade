@@ -3,14 +3,10 @@ import './App.css'
 function Listing(){
     return (
         <div className="PageContent">
-            <div className="SearchBar">
-                <label></label>
-                <input type="text" id="listinginput"  name="lquery" placeholder="Search for listings..." onKeyDown={Search}/>
-            </div>
-            <div className="UserListings">
-                <div className="Card">
-                    <div className="Image">Image</div>
-                    <div className="Name">Brand new ipad</div>
+            <div className="Search">
+                <div className="SearchBar">
+                    <label></label>
+                    <input type="text" id="listinginput"  name="lquery" placeholder="Search for listings..." onKeyDown={Search}/>
                 </div>
             </div>
             <h3 className="ContentSubHeader">Recently Added</h3>

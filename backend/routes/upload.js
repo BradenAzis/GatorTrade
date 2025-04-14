@@ -6,6 +6,7 @@ const { storage } = require('../config/cloudinary');
 
 const upload = multer({ storage });
 
+//TODO: file size limit and file type validation?
 router.post('/image', upload.array('images', 5), (req, res) => {
     const images = req.files.map(file => ({
       url: file.path,         // public URL

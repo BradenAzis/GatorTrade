@@ -4,6 +4,7 @@ import Listings from './Listings';
 import Profile from './Profile';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import logo from './resources/images/GatorTradeLogo.png';
+import ListingInfo from "./ListingInfo";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/listings" element={<Listings />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/listings/:id" element={<ListingInfo />} />
         </Routes>
     </BrowserRouter>
   );

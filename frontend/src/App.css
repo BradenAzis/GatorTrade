@@ -146,20 +146,48 @@
     text-align: center;
     color: #090a12;
   }
+}
+.UserListings {
+  align-items: center;
+}
 
-  .UserListings {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1vmin;
-    margin-top: 5vmin;
+.Card {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  width: 80vmax;
+  height: 10vmax;
+  border: 3px solid var(--SwampGreen);
+  background-color: white;
+  margin-bottom: 1vmin;
+}
+
+.CardText {
+  font-family: "Quasimoda", sans-serif;
+  color: black;
+  margin-left: 5vmin;
+}
+
+.CardPrice {
+  font-family: "Quasimoda", sans-serif;
+  color: black;
+  justify-items: right;
+}
+
+.CardLink {
+  font-family: "Quasimoda", sans-serif;
+  color: black;
+  cursor: pointer;
+  margin-left: 30vmin;
+  margin-top: 2vmin;
+
+  a:visited {
+    color: black;
+    text-decoration: none;
   }
 
-  .Card {
-    position: relative;
-    width: 500px;
-    height: 500px;
-    border: 1px solid var(--SwampGreen);
-    background-color: white;
-    padding: 1vmin;
+  a:link {
+    color: black;
+    text-decoration: none;
   }
 }

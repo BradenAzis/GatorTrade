@@ -8,6 +8,8 @@ const connectDB = require("./config/db")
 const userRoutes = require("./routes/userRoutes");
 const listingRoutes = require("./routes/listings");
 const authRoutes = require("./routes/auth")
+const chatRoutes = require('./routes/chats');
+const messageRoutes = require('./routes/messages');
 require("./config/passport");
 
 const app = express();
@@ -28,6 +30,8 @@ app.use(cors());
 app.use("/users", userRoutes);
 app.use("/listings", listingRoutes);
 app.use("/auth", authRoutes);
+app.use('/chats', chatRoutes);
+app.use('/messages', messageRoutes);
 
 // connect to MongoDB
 connectDB();

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './App.css';
+
 
 export default function Messages() {
   const [chats, setChats] = useState([]);
@@ -10,7 +12,7 @@ export default function Messages() {
   useEffect(() => {
     // Fetch all chats
     const fetchChats = async () => {
-      const res = await axios.get('/api/chats');
+      const res = await axios.get('http://localhost:5001/chats', { withCredentials: true });
       setChats(res.data);
     };
     fetchChats();
@@ -20,7 +22,7 @@ export default function Messages() {
     // Fetch messages when a chat is selected
     if (!selectedChat) return;
     const fetchMessages = async () => {
-      const res = await axios.get(`/api/messages?chatId=${selectedChat._id}`);
+      const res = await axios.get(`http://localhost:5001/messages/${selectedChat._id}`, { withCredentials: true });
       setMessages(res.data);
     };
     fetchMessages();
@@ -28,76 +30,52 @@ export default function Messages() {
 
   const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
-    const res = await axios.post('/api/messages', {
-      chatId: selectedChat._id,
-      text: newMessage,
-    });
+    const res = await axios.post('http://localhost:5001/messages', {
+        chatId: selectedChat._id,
+        text: newMessage,
+    }, {withCredentials: true});
     setMessages((prev) => [...prev, res.data]);
     setNewMessage('');
   };
 
   return (
-    <div className="flex h-screen">
-      {/* Left column - chats list */}
-      <div className="w-1/4 border-r overflow-y-auto p-4">
-        <h2 className="text-lg font-semibold mb-4">Chats</h2>
-        {chats.map((chat) => (
+    <div className="messages-container">
+      {/* Left: Chat List */}
+      <div className="chat-list">
+        {chats.map(chat => (
           <div
             key={chat._id}
+            className={`chat-preview ${selectedChat?._id === chat._id ? 'active' : ''}`}
             onClick={() => setSelectedChat(chat)}
-            className={`p-2 cursor-pointer rounded hover:bg-gray-100 ${
-              selectedChat?._id === chat._id ? 'bg-gray-200' : ''
-            }`}
           >
-            <div className="font-medium">{chat.otherUser?.name || 'Unknown User'}</div>
-            <div className="text-sm text-gray-500 truncate">
-              {chat.lastMessage?.text || 'No messages yet'}
-            </div>
+            <div className="chat-user">{chat.otherUser?.firstName}</div>
+            <div className="chat-last-message">{chat.lastMessage?.text || 'No messages yet'}</div>
           </div>
         ))}
       </div>
 
-      {/* Right column - messages */}
-      <div className="w-3/4 flex flex-col">
-        {selectedChat ? (
-          <>
-            <div className="flex-1 overflow-y-auto p-4">
-              {messages.map((msg) => (
-                <div
-                  key={msg._id}
-                  className={`flex mb-2 ${
-                    msg.sender === selectedChat.otherUser._id
-                      ? 'justify-start'
-                      : 'justify-end'
-                  }`}
-                >
-                  <div className="max-w-xs p-2 rounded-lg bg-blue-100 text-gray-800">
-                    {msg.text}
-                  </div>
-                </div>
-              ))}
+      {/* Right: Chat Window */}
+      <div className="chat-window">
+        <div className="chat-messages">
+          {messages.map(msg => (
+            <div
+              key={msg._id}
+              className={`chat-bubble ${msg.sender === selectedChat.otherUser._id ? 'received' : 'sent'}`}
+            >
+              {msg.text}
             </div>
-            <div className="p-4 border-t flex">
-              <input
-                type="text"
-                className="flex-1 border rounded p-2 mr-2"
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-                placeholder="Type a message..."
-              />
-              <button
-                onClick={handleSendMessage}
-                className="bg-blue-500 text-white px-4 py-2 rounded"
-              >
-                Send
-              </button>
-            </div>
-          </>
-        ) : (
-          <div className="flex-1 flex items-center justify-center text-gray-500">
-            Select a chat to start messaging
-          </div>
-        )}
+          ))}
+        </div>
+
+        <div className="chat-input">
+          <input
+            type="text"
+            value={newMessage}
+            onChange={e => setNewMessage(e.target.value)}
+            placeholder="Type a message..."
+          />
+          <button onClick={handleSendMessage}>Send</button>
+        </div>
       </div>
     </div>
   );

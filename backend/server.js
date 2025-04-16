@@ -15,11 +15,14 @@ const messageRoutes = require('./routes/messages');
 require("./config/passport");
 
 const app = express();
+app.use(cors({origin : 'http://localhost:3000', credentials : true }));
+
 const server = http.createServer(app); // socket.io
 const io = socketIO(server, {
   cors: {
     origin: 'http://localhost:3000', // your frontend origin
-    methods: ['GET', 'POST']
+    methods: ['GET', 'POST'],
+    credentials: true
   }
 });
 
@@ -33,7 +36,6 @@ app.use(session({ //client session management
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-app.use(cors({origin : 'http://localhost:3000', credentials : true }));
 
 // routes
 app.use("/users", userRoutes);

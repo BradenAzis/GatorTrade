@@ -1,16 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
+import { io } from 'socket.io-client';
 import './App.css';
-
 
 export default function Messages() {
   const [chats, setChats] = useState([]);
   const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
+  const socket = useRef(null);
 
   useEffect(() => {
-    // Fetch all chats
+    // Connect to socket server
+    socket.current = io('http://localhost:5001', { withCredentials: true });
+
+    // Listen for incoming messages
+    socket.current.on('message received', (message) => {
+      if (selectedChat && message.chatId === selectedChat._id) {
+        setMessages((prev) => [...prev, message]);
+      }
+    });
+
+    return () => {
+      socket.current.disconnect();
+    };
+  }, [selectedChat]);
+
+  useEffect(() => {
     const fetchChats = async () => {
       const res = await axios.get('http://localhost:5001/chats', { withCredentials: true });
       setChats(res.data);
@@ -19,10 +35,12 @@ export default function Messages() {
   }, []);
 
   useEffect(() => {
-    // Fetch messages when a chat is selected
     if (!selectedChat) return;
+
     const fetchMessages = async () => {
-      const res = await axios.get(`http://localhost:5001/messages/${selectedChat._id}`, { withCredentials: true });
+      const res = await axios.get(`http://localhost:5001/messages/${selectedChat._id}`, {
+        withCredentials: true,
+      });
       setMessages(res.data);
     };
     fetchMessages();
@@ -30,11 +48,18 @@ export default function Messages() {
 
   const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
-    const res = await axios.post('http://localhost:5001/messages', {
+
+    const res = await axios.post(
+      'http://localhost:5001/messages',
+      {
         chatId: selectedChat._id,
         text: newMessage,
-    }, {withCredentials: true});
+      },
+      { withCredentials: true }
+    );
+
     setMessages((prev) => [...prev, res.data]);
+    socket.current.emit('new message', res.data); // emit to server
     setNewMessage('');
   };
 

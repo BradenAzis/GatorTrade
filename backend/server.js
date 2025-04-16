@@ -12,6 +12,7 @@ const listingRoutes = require("./routes/listings");
 const authRoutes = require("./routes/auth")
 const chatRoutes = require('./routes/chats');
 const messageRoutes = require('./routes/messages');
+const imageUploadRoutes = require('./routes/upload');
 require("./config/passport");
 
 const app = express();
@@ -22,6 +23,10 @@ const io = socketIO(server, {
     methods: ['GET', 'POST']
   }
 });
+
+// debug
+console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
+
 
 // middleware
 app.use(session({ //client session management
@@ -41,6 +46,7 @@ app.use("/listings", listingRoutes);
 app.use("/auth", authRoutes);
 app.use('/chats', chatRoutes);
 app.use('/messages', messageRoutes);
+app.use('/upload', imageUploadRoutes);
 
 // connect to MongoDB
 connectDB();

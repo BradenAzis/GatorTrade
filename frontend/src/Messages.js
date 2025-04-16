@@ -8,11 +8,29 @@ export default function Messages() {
   const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
+  const [userId, setUserId] = useState(null);
   const socket = useRef(null);
+
+  useEffect(() => {
+    const fetchCurrentUser = async () => {
+      try {
+        const res = await axios.get("http://localhost:5001/auth/me", {
+          withCredentials: true
+        });
+        setUserId(res.data._id);
+      } catch (err) {
+        console.error("Failed to fetch user:", err);
+      }
+    };
+    fetchCurrentUser();
+  }, []);
 
   useEffect(() => {
     // Connect to socket server
     socket.current = io('http://localhost:5001', { withCredentials: true });
+
+    // join personal room
+    socket.current.emit('join', userId);
 
     // Listen for incoming messages
     socket.current.on('message received', (message) => {

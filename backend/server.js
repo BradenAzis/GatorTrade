@@ -8,9 +8,14 @@ const connectDB = require("./config/db")
 const userRoutes = require("./routes/userRoutes");
 const listingRoutes = require("./routes/listings");
 const authRoutes = require("./routes/auth")
+const imageUploadRoutes = require('./routes/upload');
 require("./config/passport");
 
 const app = express();
+
+// debug
+console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
+
 
 // middleware
 app.use(session({ //client session management
@@ -28,6 +33,7 @@ app.use(cors());
 app.use("/users", userRoutes);
 app.use("/listings", listingRoutes);
 app.use("/auth", authRoutes);
+app.use('/upload', imageUploadRoutes);
 
 // connect to MongoDB
 connectDB();

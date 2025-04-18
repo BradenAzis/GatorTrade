@@ -28,20 +28,33 @@ export default function Messages() {
   useEffect(() => {
     socket.current = io('http://localhost:5001', { withCredentials: true });
   
+    return () => {
+      socket.current.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!userId || !socket.current) return;
+  
+    console.log("Emitting join for user:", userId);
+    socket.current.emit('join', userId);
+  }, [userId]);
+  
+  useEffect(() => {
+    if (!socket.current) return;
+  
     socket.current.on('message received', (message) => {
-      setMessages(prev => [...prev, message]);
+      console.log("Recieved data:");
+      console.log(message);
+      if (selectedChat && message.chat === selectedChat._id) {
+        setMessages(prev => [...prev, message]);
+      }
     });
   
     return () => {
-      socket.current.disconnect(); // only when component unmounts
+      socket.current.off('message received');
     };
-  }, []); // ← run only once when the component mounts
-  
-  useEffect(() => {
-    if (selectedChat && selectedChat.otherUser) {
-      socket.current.emit('join', userId); // join other user's room
-    }
-  }, [selectedChat]);
+  });
 
   useEffect(() => {
     const fetchChats = async () => {
@@ -76,6 +89,8 @@ export default function Messages() {
     );
 
     setMessages((prev) => [...prev, res.data]);
+    console.log("Sent data:")
+    console.log(res.data)
     socket.current.emit('new message', {
         chatId: selectedChat._id,
         senderId: res.data.sender,           

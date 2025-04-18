@@ -63,8 +63,8 @@ io.on('connection', (socket) => {
 
     // emit to receiver's room
     io.to(receiverId).emit('message received', {
-      chatId,
-      senderId,
+      chat: chatId,
+      sender: senderId,
       text,
       createdAt: new Date()
     });

@@ -16,11 +16,14 @@ const imageUploadRoutes = require('./routes/upload');
 require("./config/passport");
 
 const app = express();
+app.use(cors({origin : 'http://localhost:3000', credentials : true }));
+
 const server = http.createServer(app); // socket.io
 const io = socketIO(server, {
   cors: {
-    origin: 'http://localhost:5001', // your frontend origin
-    methods: ['GET', 'POST']
+    origin: 'http://localhost:3000', // your frontend origin
+    methods: ['GET', 'POST'],
+    credentials: true
   }
 });
 
@@ -38,7 +41,6 @@ app.use(session({ //client session management
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-app.use(cors({origin : 'http://localhost:3000', credentials : true }));
 
 // routes
 app.use("/users", userRoutes);
@@ -62,13 +64,13 @@ io.on('connection', (socket) => {
   });
 
   // handle message sending
-  socket.on('sendMessage', ({ chatId, senderId, receiverId, text }) => {
-    console.log(`Message sent from ${senderId} to ${receiverId}:`, text);
+  socket.on('new message', ({ chatId, senderId, receiverId, text }) => {
+    console.log(`Message sent in chat: ${chatId} from ${senderId} to ${receiverId}:`, text);
 
     // emit to receiver's room
-    io.to(receiverId).emit('newMessage', {
-      chatId,
-      senderId,
+    io.to(receiverId).emit('message received', {
+      chat: chatId,
+      sender: senderId,
       text,
       createdAt: new Date()
     });

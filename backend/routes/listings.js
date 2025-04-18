@@ -19,6 +19,9 @@ router.post("/", isLoggedIn, async (req, res) => {
       tags 
     });
     await newListing.save();
+
+    await newListing.populate("user", "firstName lastName email"); // populate seller details
+    
     res.status(201).json(newListing);
   } catch (error) {
     res.status(500).json({ message: "Error creating listing", error });

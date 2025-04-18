@@ -39,7 +39,7 @@ export default function Messages() {
   
   useEffect(() => {
     if (selectedChat && selectedChat.otherUser) {
-      socket.current.emit('join', selectedChat.otherUser._id); // join other user's room
+      socket.current.emit('join', userId); // join other user's room
     }
   }, [selectedChat]);
 

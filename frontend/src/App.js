@@ -1,4 +1,5 @@
 import './App.css';
+import LandingPage from './LandingPage'
 import HomePage from './HomePage';
 import Listings from './Listings';
 import Profile from './Profile';
@@ -21,7 +22,8 @@ function App() {
             </div>
         </div>
         <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/listings" element={<Listings />} />
             <Route path="/profile" element={<Profile />} />
         </Routes>

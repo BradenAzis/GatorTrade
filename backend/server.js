@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
 
   // handle message sending
   socket.on('new message', ({ chatId, senderId, receiverId, text }) => {
-    console.log(`Message sent from ${senderId} to ${receiverId}:`, text);
+    console.log(`Message sent in chat: ${chatId} from ${senderId} to ${receiverId}:`, text);
 
     // emit to receiver's room
     io.to(receiverId).emit('message received', {

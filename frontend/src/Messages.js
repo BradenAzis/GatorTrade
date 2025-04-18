@@ -78,11 +78,11 @@ export default function Messages() {
 
     setMessages((prev) => [...prev, res.data]);
     socket.current.emit('new message', {
-        chatId: res.data.chatId,
-        senderId: res.data.sender,           // this is likely a user ID
-        receiverId: selectedChat.otherUser._id, // 👈 you'll need this
+        chatId: selectedChat._id,
+        senderId: res.data.sender,           
+        receiverId: selectedChat.otherUser._id,
         text: res.data.text,
-    });// emit to server
+      });// emit to server
     setNewMessage('');
   };
 

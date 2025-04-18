@@ -12,6 +12,7 @@ const imageUploadRoutes = require('./routes/upload');
 require("./config/passport");
 
 const app = express();
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 // debug
 console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);

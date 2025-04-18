@@ -6,7 +6,10 @@ const GoogleUser = require("../models/GoogleUser");
 const isLoggedIn = require("../middleware/authMiddleware");
 
 // create a new listing (protected route)
-router.post("/", async (req, res) => {
+router.post("/", isLoggedIn, async (req, res) => {
+  console.log("POST /listings hit ✅");
+  console.log("Request body:", req.body);
+  console.log("Authenticated user:", req.user);
   try {
     //console.log("User in request:", req.user); // check req.user info
     const { title, description, price, images, tags} = req.body;
@@ -18,12 +21,12 @@ router.post("/", async (req, res) => {
       images,
       tags 
     });
+    console.log("New listing:", newListing); // check new listing info
     await newListing.save();
+    console.log("Listing saved:", newListing);
     res.status(201).json(newListing);
-    console.log("Authenticated User:", req.user) // debugging
-    console.log("Listing Data:", req.body) // debugging
-    console.log("Listing Created:", newListing) // debugging
   } catch (error) {
+    console.error("Failed to save listing:", error);
     res.status(500).json({ message: "Error creating listing", error });
   }
 });

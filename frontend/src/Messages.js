@@ -26,22 +26,21 @@ export default function Messages() {
   }, []);
 
   useEffect(() => {
-    // Connect to socket server
     socket.current = io('http://localhost:5001', { withCredentials: true });
-
-    // join personal room
-    socket.current.emit('join', userId);
-
-    // Listen for incoming messages
+  
     socket.current.on('message received', (message) => {
-      if (selectedChat && message.chatId === selectedChat._id) {
-        setMessages((prev) => [...prev, message]);
-      }
+      setMessages(prev => [...prev, message]);
     });
-
+  
     return () => {
-      socket.current.disconnect();
+      socket.current.disconnect(); // only when component unmounts
     };
+  }, []); // ← run only once when the component mounts
+  
+  useEffect(() => {
+    if (selectedChat && selectedChat.otherUser) {
+      socket.current.emit('join', selectedChat.otherUser._id); // join other user's room
+    }
   }, [selectedChat]);
 
   useEffect(() => {

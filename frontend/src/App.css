@@ -15,51 +15,32 @@
 }
 
 .NavBar {
+  position: sticky;
   margin-top: 1vmin;
   display: flex;
-  align-content: center;
   justify-content: space-between;
+  align-content: center;
+  border-bottom: #DBF0E3 1px solid;
+}
+
+.InlineContent {
+  display: flex;
+  vertical-align: center;
 }
 
 .PageContent {
   display: flex;
   flex-direction: column;
-  margin: 5vmin 15vmin;
-  align-content: start;
+  margin: 1vmin 20vmin 10vmin 20vmin;
   justify-content: center;
+  align-content: start;
 }
 
 .ContentHeader {
   font-size: 8vmin;
   color: var(--GatorGreen);
   font-family: "Quasimoda", sans-serif;
-  margin-bottom: 5vmin;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.NavBar {
-  margin-top: 1vmin;
-  display: flex;
-  align-content: center;
-  justify-content: space-between;
-}
-
-.PageContent {
-  display: flex;
-  flex-direction: column;
-  margin: 5vmin 15vmin;
-  align-content: start;
-  justify-content: center;
-}
-
-.ContentHeader {
-  font-size: 8vmin;
-  color: var(--GatorGreen);
-  font-family: "Quasimoda", sans-serif;
-  margin-bottom: 5vmin;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 1vmin auto 1vmin 0;
 }
 
 .ContentSubHeader {
@@ -72,8 +53,7 @@
 }
 
 .ContentParagraph {
-  display: flex;
-  flex-wrap: wrap;
+  text-wrap: wrap;
   align-items: flex-start;
 }
 
@@ -82,9 +62,7 @@
   font-size: 3vmin;
   font-family: "Articulat", sans-serif;
   color: black;
-  line-height: 5vmin;
-  flex: 1 1 60vmin;
-  min-width: 50vmin;
+  line-height: 8vmin;
 }
 
 .ParagraphVisual {
@@ -95,11 +73,17 @@
   margin-bottom: 2vmin;
 }
 
+.ImagePreview {
+  max-width: 50vmin;
+  margin: 2vmin auto 2vmin 0;
+  border-radius: 20px;
+}
+
 .PageButton {
   display: flex;
   font-size: calc(10px + 2vmin);
   font-family: "Quasimoda", sans-serif;
-  gap: 20px;
+  gap: 22px;
   color: var(--GatorGreen);
   cursor: pointer;
   padding: 10px;
@@ -117,23 +101,100 @@
   }
 }
 
-.SearchBar input[type=text]{
+.Search{
   display: flex;
-  margin-bottom: 5vmin;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: center;
+  align-items: start;
+  margin-top: 2vmin;
+}
+
+.SearchBar input[type=text]{
+  margin-left: 3vmin;
+  margin-right: 3vmin;
   padding: 6px;
   background-color: white;
   width: 50vw;
   font-size: 3vmin;
   border-radius: 20px;
   border-color: var(--GatorGreen);
+  font-family: "articulat", sans-serif;
+}
+
+.InputHeader {
+  font-size: 3vmin;
+  font-family: "Articulat", sans-serif;
+  border-top: lightgrey 1px solid;
+  padding-top: 2vmin;
+}
+
+.InputField input[type=text]{
+  padding: 6px;
+  background-color: white;
+  width: 50vw;
+  font-size: 3vmin;
+  border-radius: 10px;
+  font-family: "Articulat", sans-serif;
+  margin: 1vmin;
+}
+
+.ParagraphField textarea {
+  padding: 6px;
+  background-color: white;
+  width: 50vw;
+  font-size: 3vmin;
+  border-radius: 10px;
+  border-color: black;
+  font-family: "Articulat", sans-serif;
+  margin: 1vmin;
+  height: 40vmin;
+}
+
+.PriceInput input[type=text]{
+  padding: 6px;
+  background-color: white;
+  width: 3vw;
+  font-size: 3vmin;
+  border-radius: 10px;
+  font-family: "Articulat", sans-serif;
+  margin: 1vmin;
+}
+
+.Button {
+  text-decoration: none;
+  font-size: 3vmin;
+  background-image: linear-gradient(to bottom right, mediumspringgreen, var(--GatorGreen), var(--GatorGreen));
+  color: white;
+  cursor: pointer;
+  font-family: "Quasimoda", sans-serif;
+  border-radius: 20px;
+  width: fit-content;
+  text-align: center;
+  padding: 0 15px;
+  margin-top: 3vmin;
+}
+
+.UploadButton input[type=file]{
+  text-decoration: none;
+  font-size: 3vmin;
+  background-image: linear-gradient(to bottom right, mediumspringgreen, var(--GatorGreen), var(--GatorGreen));
+  color: white;
+  cursor: pointer;
+  font-family: "Quasimoda", sans-serif;
+  border-radius: 20px;
+  width: fit-content;
+  text-align: center;
+  margin-top: 3vmin;
+}
+
+::file-selector-button{
+  display: none;
 }
 
 .App-logo img {
   margin-left: 1vmin;
-  max-height: 50vmin;
-  max-width: 50vmin;
+  max-height: 27vmin;
+  max-width: 27vmin;
+  padding: 10px;
 
   .App-header {
     background-color: white;

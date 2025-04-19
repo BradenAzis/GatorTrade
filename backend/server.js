@@ -16,6 +16,7 @@ const imageUploadRoutes = require('./routes/upload');
 require("./config/passport");
 
 const app = express();
+
 app.use(cors({origin : 'http://localhost:3000', credentials : true }));
 
 const server = http.createServer(app); // socket.io

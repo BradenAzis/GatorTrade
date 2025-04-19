@@ -1,25 +1,25 @@
 /* landing.css */
-/* 🆕 Wrapper for 3D background layering */
 html, body, #root {
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow-x: hidden;
   }
-
-  .landing-wrapper {
-    min-height: 100vh;
-    height: auto;
-    position: relative;
-  }
-  .canvas-bg {
-    z-index: -1;
-    position: fixed; /* ⬅️ stick it to the screen like a background */
+  
+  /* This forces the canvas to be the background */
+.canvas-container {
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+  }
+  
+  .canvas-bg {
     width: 100%;
     height: 100%;
-    pointer-events: none; /* ⬅️ optional, lets clicks pass through */
   }
   
 .landing-container {
@@ -29,11 +29,12 @@ html, body, #root {
     color: #212529;
     padding: 0;
     margin: 0;
+    backdrop-filter: blur(0px); /* optional for better contrast */
   }
   
   /* Modified hero section */
 .hero {
-    height: 100vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,7 +43,6 @@ html, body, #root {
     color: #95F09B;
     text-align: center;
     padding: 0 1rem;
-    backdrop-filter: blur(4px); /* optional for better contrast */
   }
   
   .hero h1 {
@@ -54,6 +54,24 @@ html, body, #root {
     font-size: 2rem;
     max-width: 800px;
   }
+
+  .spacer {
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: transparent; /* remove solid background */
+  }
+
+  .spacer2 {
+    height: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: transparent; /* remove solid background */
+  }
   
   /* Slight transparency on cards section */
 .cards-section {
@@ -63,7 +81,7 @@ html, body, #root {
     padding: 4rem 2rem;
     max-width: 1200px;
     margin: auto;
-    background-color: rgba(255, 255, 255, 0.2); /* translucent background */
+    background: transparent; /* remove solid background */
     border-radius: 20px;
   }
   
@@ -84,7 +102,7 @@ html, body, #root {
     padding: 30px;
     border-radius: 80px;
     width: 100%;
-    max-width: 600px;
+    max-width: 450px;
     object-fit: cover;
   }
   

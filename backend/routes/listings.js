@@ -8,8 +8,8 @@ const isLoggedIn = require("../middleware/authMiddleware");
 // create a new listing (protected route)
 router.post("/", isLoggedIn, async (req, res) => {
   try {
-    //console.log("User in request:", req.user); // check req.user info
-    const { title, description, price, images, tags} = req.body;
+    const { title, description, price, images, tags } = req.body;
+
     const newListing = new Listing({ 
       user: req.user._id,
       title, 
@@ -18,12 +18,19 @@ router.post("/", isLoggedIn, async (req, res) => {
       images,
       tags 
     });
+
     await newListing.save();
+
+    await newListing.populate("user", "firstName lastName email"); // populate seller details
+    console.log("New listing created and populated:", newListing);
     res.status(201).json(newListing);
+
   } catch (error) {
+    console.error("Error creating listing:", error);
     res.status(500).json({ message: "Error creating listing", error });
   }
 });
+
 
 // get all listings or filter by search, maxPrice, or tags
 router.get("/", async (req, res) => {

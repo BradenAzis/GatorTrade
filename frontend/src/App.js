@@ -5,6 +5,7 @@ import Profile from './Profile';
 import Messages from './Messages'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import logo from './resources/images/GatorTradeLogo.png';
+import ListingInfo from "./ListingInfo";
 
 
 function App() {
@@ -26,7 +27,9 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/listings" element={<Listings />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/listings/:id" element={<ListingInfo />} />
             <Route path="/messages" element={<Messages />} />
+
         </Routes>
     </BrowserRouter>
   );

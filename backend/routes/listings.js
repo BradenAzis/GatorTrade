@@ -8,8 +8,8 @@ const isLoggedIn = require("../middleware/authMiddleware");
 // create a new listing (protected route)
 router.post("/", isLoggedIn, async (req, res) => {
   try {
-    //console.log("User in request:", req.user); // check req.user info
-    const { title, description, price, images, tags} = req.body;
+    const { title, description, price, images, tags } = req.body;
+
     const newListing = new Listing({ 
       user: req.user._id,
       title, 
@@ -18,20 +18,28 @@ router.post("/", isLoggedIn, async (req, res) => {
       images,
       tags 
     });
+
     await newListing.save();
+
+    await newListing.populate("user", "firstName lastName email"); // populate seller details
+    console.log("New listing created and populated:", newListing);
     res.status(201).json(newListing);
+
   } catch (error) {
+    console.error("Error creating listing:", error);
     res.status(500).json({ message: "Error creating listing", error });
   }
 });
 
+
 // get all listings or filter by search, maxPrice, or tags
 router.get("/", async (req, res) => {
   try {
-    const {search, tags, maxPrice} = req.query;
+    const {search, tags, maxPrice, sortBy} = req.query;
     let query = {};
     // Search by listing title (case-insensitive)
     // BUG/UNINTENDED BEHAVIOR: only finds the first instance of the listing with the search keyword. Should return all listings with that word
+        // Seems to work fine in Postman
     if (search) {
       query.title = { $regex: search, $options: "i" };
     }
@@ -43,7 +51,20 @@ router.get("/", async (req, res) => {
     if (maxPrice) {
       query.price = { $lte: parseFloat(maxPrice) }; // Ensure it's a number
     }
-    const listings = await Listing.find(query).populate("user", "firstName lastName email"); // Populate seller details
+    // Determine sort field and order
+    let sortOption = {};
+    if (sortBy === "price_asc") {
+      sortOption.price = 1; // ascending
+    } else if (sortBy === "price_desc") {
+      sortOption.price = -1; // descending
+    } else {
+      sortOption.createdAt = -1; // default to most recent
+    }
+    
+    const listings = await Listing.find(query)
+      .sort(sortOption)
+      .populate("user", "firstName lastName email");
+
     res.json(listings);
   } catch (error) {
     res.status(500).json({ message: "Error fetching listings", error });

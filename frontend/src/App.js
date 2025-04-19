@@ -7,15 +7,14 @@ import Post from './Post';
 import Messages from './Messages'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import logo from './resources/images/GatorTradeLogo.png';
-import {useEffect} from "react";
-import ListingPage from "./ListingPage";
+import ListingInfo from "./ListingInfo";
+import {useEffect, useState} from "react";
 
 
 function App() {
 
-    const ButtonRefState = ['/Profile', 'http://localhost:5001/auth/google']
-    const ButtonNameState = ['My Profile', 'Login']
-    let index = 1
+    const [ButtonName, setButtonName] = useState(null);
+    const [ButtonURL, setButtonURL] = useState(null);
 
     const CheckUserState = async () => {
         const response = await fetch('http://localhost:5001/auth/me', {
@@ -28,9 +27,15 @@ function App() {
 
         if (!response.ok) {
             console.log(response);
+            console.log("AAAAAAAAAGGGGGGH")
+            setButtonName("Login")
+            setButtonURL('http://localhost:5001/auth/google')
         }
         else{
             console.log(response);
+            console.log("YES KING")
+            setButtonName("My Profile")
+            setButtonURL('http://localhost:3000/profile')
         }
 
     }
@@ -50,8 +55,8 @@ function App() {
                 </a>
             </div>
             <div className="PageButton">
-                <a href={ButtonRefState[index]}>{ButtonNameState[index]}</a>
-                <a href={"/Post"}>Post</a>
+                <a href={ButtonURL}>{ButtonName}</a>
+                <a href={"/Listings"}>Listings</a>
                 <a href="/About">About</a>
                 <a href="/Messages">Messages</a>
             </div>

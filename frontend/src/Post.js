@@ -60,7 +60,7 @@ function Post() {
 
       const listingResult = await listingRes.json();
       console.log("Listing created:", listingResult);
-      navigate(`/listing/${listingResult._id}`); // redirects to the listing page after creation
+      navigate(`/Listings/${listingResult._id}`); // redirects to the listing page after creation
 
     } catch (err) {
       console.error("Listing creation failed:", err);

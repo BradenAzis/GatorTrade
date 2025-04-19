@@ -1,0 +1,48 @@
+.listing-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 24px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .listing-images img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 16px;
+    border-radius: 12px;
+  }
+  
+  .listing-info h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+  
+  .listing-price {
+    font-size: 1.5rem;
+    color: green;
+    margin-top: 8px;
+  }
+  
+  .listing-description {
+    margin: 16px 0;
+    line-height: 1.5;
+  }
+  
+  .listing-tags {
+    margin-bottom: 16px;
+  }
+  
+  .tag {
+    background-color: #eee;
+    padding: 6px 12px;
+    border-radius: 16px;
+    margin-right: 8px;
+    font-size: 0.9rem;
+  }
+  
+  .listing-user h3 {
+    margin-bottom: 4px;
+    font-size: 1rem;
+  }
+  

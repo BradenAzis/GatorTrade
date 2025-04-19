@@ -20,11 +20,14 @@ function ListingPage() {
 
   return (
     <div className="listing-container">
-      <div className="listing-images">
+        <div className="listing-images-scroll">
         {listing.images.map((img, index) => (
-          <img key={index} src={img} alt={`Image ${index}`} />
+            <div className="image-wrapper" key={index}>
+            <img src={img} alt={`Image ${index}`} />
+            </div>
         ))}
-      </div>
+        </div>
+
 
       <div className="listing-info">
         <h1>{listing.title}</h1>
@@ -45,7 +48,6 @@ function ListingPage() {
           <p>{listing.user.email}</p>
         </div>
 
-        {/* ✅ Contact Seller Button */}
         <button
           className="ContactSeller"
           onClick={async () => {

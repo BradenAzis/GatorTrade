@@ -7,6 +7,9 @@ const isLoggedIn = require("../middleware/authMiddleware");
 
 // create a new listing (protected route)
 router.post("/", isLoggedIn, async (req, res) => {
+  console.log("POST /listings hit successfully");
+  console.log("Request body:", req.body);
+  console.log("Authenticated user:", req.user);
   try {
     const { title, description, price, images, tags } = req.body;
 
@@ -26,7 +29,7 @@ router.post("/", isLoggedIn, async (req, res) => {
     res.status(201).json(newListing);
 
   } catch (error) {
-    console.error("Error creating listing:", error);
+    console.error("Failed to save listing:", error);
     res.status(500).json({ message: "Error creating listing", error });
   }
 });

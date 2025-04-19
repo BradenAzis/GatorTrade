@@ -46,7 +46,7 @@ function Profile(){
                     <h2 className={"ParagraphText"}>I'm balling</h2>
                 </div>
             </div>
-            <h1 className={"ContentSubHeader"}>{userInfo["firstName"] + "'s Listings"}</h1>
+            <h1 className={"ContentSubHeader"}>{"Posted Listings"}</h1>
         </div>
         <div className="PageContent">
             <div className="UserListings">

@@ -5,3 +5,24 @@
     object-fit: cover;
     margin: 5vmin 5vmin 0 5vmin
 }
+
+.ProfileCard {
+    display: flex;
+    background-color: white;
+    border-radius: 80px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    flex-wrap: wrap;
+    padding-bottom: 5vmin;
+}
+
+.ProfileCardsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: auto;
+    background: transparent; /* remove solid background */
+    border-radius: 20px;
+}

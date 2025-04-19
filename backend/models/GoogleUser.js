@@ -6,8 +6,8 @@ const UserSchema = new mongoose.Schema({
   lastName: { type: String },
   email: { type: String, unique: true },
   favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Listing" }],
-  bio: { type: String, required: false },
-  profilePicture: { type: String, required: false },
+  bio: { type: String, required: false, default: "" },
+  profilePicture: { type: String, required: false, default: "" },
 });
 
 const User = mongoose.model("GoogleUser", UserSchema);

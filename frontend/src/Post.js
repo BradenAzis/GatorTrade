@@ -1,9 +1,12 @@
 import './App.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Post() {
   const [selectedImages, setSelectedImages] = useState([]);
   const [previewImages, setPreviewImages] = useState([]);
+  const navigate = useNavigate(); 
+
 
   const submitPost = async () => {
     const title = document.getElementById("ltitle").value;
@@ -57,6 +60,7 @@ function Post() {
 
       const listingResult = await listingRes.json();
       console.log("Listing created:", listingResult);
+      navigate(`/listing/${listingResult._id}`); // redirects to the listing page after creation
 
     } catch (err) {
       console.error("Listing creation failed:", err);

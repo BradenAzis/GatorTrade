@@ -7,7 +7,7 @@ const isLoggedIn = require("../middleware/authMiddleware");
 
 // create a new listing (protected route)
 router.post("/", isLoggedIn, async (req, res) => {
-  console.log("POST /listings hit ✅");
+  console.log("POST /listings hit successfully");
   console.log("Request body:", req.body);
   console.log("Authenticated user:", req.user);
   try {

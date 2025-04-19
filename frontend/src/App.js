@@ -1,4 +1,5 @@
 import './App.css';
+import LandingPage from './LandingPage'
 import HomePage from './HomePage';
 import Listings from './Listings';
 import Profile from './Profile';
@@ -6,6 +7,7 @@ import Post from './Post';
 import Messages from './Messages'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import logo from './resources/images/GatorTradeLogo.png';
+import ListingInfo from "./ListingInfo";
 import {useEffect} from "react";
 
 
@@ -55,10 +57,12 @@ function App() {
             </div>
         </div>
         <Routes>
-            <Route path="/" element={<Listings />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/about" element={<HomePage />} />
+            <Route path="/listings" element={<Listings />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/messages" element={<Messages />} />
+            <Route path="/listings/:id" element={<ListingInfo />} />
             <Route path="/post" element={<Post />} />
         </Routes>
     </BrowserRouter>

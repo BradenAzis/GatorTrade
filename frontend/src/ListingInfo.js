@@ -4,7 +4,7 @@ const ListingInfo = ({listings}) => {
     return (
         <div className="Card">
             <div className="CardLink">
-                <p>{listings.title}</p>
+                <a href={`/Listings/${listings._id}`}>{listings.title}</a>
             </div>
 
             <div className="CardPrice">

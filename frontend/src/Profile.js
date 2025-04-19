@@ -9,7 +9,7 @@ import axios from "axios";
 function Profile(){
     const [userInfo, setUserInfo] = useState([]);
     const [listings, setListings] = useState(null);
-    
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get("http://localhost:5001/listings");

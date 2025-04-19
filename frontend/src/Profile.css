@@ -1,0 +1,7 @@
+.ProfilePicture {
+    border-radius: 50%;
+    width: 25vmin;
+    height: 25vmin;
+    object-fit: cover;
+    margin: 5vmin 5vmin 0 5vmin
+}

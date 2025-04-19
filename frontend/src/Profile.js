@@ -1,12 +1,24 @@
 import './App.css'
 import './Profile.css'
 import './Landing.css'
+import ListingInfo from "./ListingInfo";
 import coolimage from './resources/images/importantazis.jpg'
 import {useEffect, useState} from "react";
 import axios from "axios";
 
 function Profile(){
     const [userInfo, setUserInfo] = useState([]);
+    const [listings, setListings] = useState(null);
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.get("http://localhost:5001/listings");
+            setListings(response.data);
+            console.log(response.data);
+        }
+        fetchData();
+    }, [])
+
 
     useEffect(() => {
         const fetchCurrentUser = async () => {
@@ -25,7 +37,8 @@ function Profile(){
     }, []);
 
     return (
-        <div className="ProfileCardsSection">
+        <div>
+            <div className="ProfileCardsSection">
             <div className={"ProfileCard"}>
                 <img className="ProfilePicture" src={coolimage} alt="ProfileImage"/>
                 <div>
@@ -34,6 +47,16 @@ function Profile(){
                 </div>
             </div>
             <h1 className={"ContentSubHeader"}>{userInfo["firstName"] + "'s Listings"}</h1>
+        </div>
+        <div className="PageContent">
+            <div className="UserListings">
+            {listings && listings
+                .filter((listing) => listing.user?._id === userInfo["_id"])
+                .map((listing) => (
+                    <ListingInfo key={listing._id} listings={listing} />
+            ))}
+            </div>
+        </div>
         </div>
     );
 }

@@ -1,10 +1,13 @@
 import './App.css';
+import LandingPage from './LandingPage'
 import HomePage from './HomePage';
 import Listings from './Listings';
 import Profile from './Profile';
 import Post from './Post';
+import Messages from './Messages'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import logo from './resources/images/GatorTradeLogo.png';
+import ListingInfo from "./ListingInfo";
 
 
 function App() {
@@ -17,16 +20,22 @@ function App() {
                 </a>
             </div>
             <div className="PageButton">
-                <a href="/Profile">My Profile</a>
+
+                <a href="/">About</a>
+                <a href="/Profile">Profile</a>
                 <a href={"/Create"}>Post</a>
-                <a href="/About">About</a>
+                <a href="/Messages">Messages</a>
             </div>
         </div>
         <Routes>
-            <Route path="/About" element={<HomePage />} />
-            <Route path="/" element={<Listings />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/listings" element={<Listings />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/create" element={<Post />} />
+            <Route path="/listings/:id" element={<ListingInfo />} />
+            <Route path="/messages" element={<Messages />} />
+
         </Routes>
     </BrowserRouter>
   );

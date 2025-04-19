@@ -11,8 +11,8 @@ router.post("/", isLoggedIn, async (req, res) => {
   console.log("Request body:", req.body);
   console.log("Authenticated user:", req.user);
   try {
-    //console.log("User in request:", req.user); // check req.user info
-    const { title, description, price, images, tags} = req.body;
+    const { title, description, price, images, tags } = req.body;
+
     const newListing = new Listing({ 
       user: req.user._id,
       title, 
@@ -21,15 +21,19 @@ router.post("/", isLoggedIn, async (req, res) => {
       images,
       tags 
     });
-    console.log("New listing:", newListing); // check new listing info
+
     await newListing.save();
-    console.log("Listing saved:", newListing);
+
+    await newListing.populate("user", "firstName lastName email"); // populate seller details
+    console.log("New listing created and populated:", newListing);
     res.status(201).json(newListing);
+
   } catch (error) {
     console.error("Failed to save listing:", error);
     res.status(500).json({ message: "Error creating listing", error });
   }
 });
+
 
 // get all listings or filter by search, maxPrice, or tags
 router.get("/", async (req, res) => {

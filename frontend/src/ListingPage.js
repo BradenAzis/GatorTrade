@@ -75,7 +75,7 @@ function ListingPage() {
           className="ContactSeller"
           onClick={async () => {
             try {
-              const res = await fetch('http://localhost:5001/chat', {
+              const res = await fetch('http://localhost:5001/chats', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -86,7 +86,7 @@ function ListingPage() {
               });
 
               const chat = await res.json();
-              navigate(`/chat/${chat._id}`);
+              navigate(`/messages`);
             } catch (err) {
               console.error("Failed to start chat:", err);
             }

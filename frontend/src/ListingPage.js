@@ -8,6 +8,8 @@ function ListingPage() {
   const navigate = useNavigate();
   const [listing, setListing] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentUser, setCurrentUser] = useState(null);
+
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -16,6 +18,16 @@ function ListingPage() {
       setListing(data);
     };
     fetchListing();
+
+    const fetchCurrentUser = async () => {
+      const res = await fetch('http://localhost:5001/auth/me', {
+        credentials: 'include'
+      });
+      const user = await res.json();
+      setCurrentUser(user);
+    };
+    fetchCurrentUser();
+
   }, [id]);
 
   if (!listing) return <p>Loading...</p>;
@@ -71,29 +83,31 @@ function ListingPage() {
           <p>{listing.user.email}</p>
         </div>
 
-        <button
-          className="ContactSeller"
-          onClick={async () => {
-            try {
-              const res = await fetch('http://localhost:5001/chats', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include',
-                body: JSON.stringify({
-                  sellerId: listing.user._id,
-                  listingId: listing._id,
-                }),
-              });
-
-              const chat = await res.json();
-              navigate(`/messages`, { state: {chat} });
-            } catch (err) {
-              console.error("Failed to start chat:", err);
-            }
-          }}
-        >
-          Contact Seller
-        </button>
+        {currentUser && listing.user._id !== currentUser._id && (
+          <button
+            className="ContactSeller"
+            onClick={async () => {
+              try {
+                const res = await fetch('http://localhost:5001/chats', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  credentials: 'include',
+                  body: JSON.stringify({
+                    sellerId: listing.user._id,
+                    listingId: listing._id,
+                  }),
+                });
+              
+                const chat = await res.json();
+                navigate(`/messages`, { state: {chat} });
+              } catch (err) {
+                console.error("Failed to start chat:", err);
+              }
+            }}
+          >
+            Contact Seller
+          </button>
+        )}
       </div>
     </div>
   );

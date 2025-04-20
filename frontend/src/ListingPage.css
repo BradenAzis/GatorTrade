@@ -20,7 +20,6 @@
     margin-left: 8px;
     margin-right: -24px;
     margin-bottom: -24px;
-    
 }
   
 .carousel-image {
@@ -69,6 +68,13 @@
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
     box-sizing: border-box;
 }
+
+.listing-price {
+    color: green;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
   
 .seller-details {
     position: fixed;
@@ -99,6 +105,7 @@
     font-family: "Quasimoda", sans-serif;
     border-radius: 20px;
     padding: 0 15px;
+    margin-right: 64px;
 }
 
 .listing-container {
@@ -106,6 +113,7 @@
     flex-direction: column;
     gap: 16px;
     margin-bottom: 24px;
+    padding-bottom: 160px
 }
 
 .listing-tags {

@@ -65,7 +65,7 @@ function ListingPage() {
               });
 
               const chat = await res.json();
-              navigate(`/messages`);
+              navigate(`/messages`, { state: {chat} });
             } catch (err) {
               console.error("Failed to start chat:", err);
             }

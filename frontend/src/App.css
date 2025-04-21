@@ -109,13 +109,16 @@
 }
 
 .SearchBar input[type=text]{
-  margin-left: 3vmin;
-  margin-right: 3vmin;
+  display: flex;
+  margin-top: 5vmin;
+  margin-left: auto;
+  margin-right: auto;
   padding: 6px;
   background-color: white;
-  width: 50vw;
-  font-size: 3vmin;
-  border-radius: 20px;
+  width: 60vw;
+  height: 6vmin;
+  font-size: 3.5vmin;
+  border-radius: 5vmin;
   border-color: var(--GatorGreen);
   font-family: "articulat", sans-serif;
 }
@@ -208,38 +211,66 @@
     color: #090a12;
   }
 }
+
 .UserListings {
-  align-items: center;
+  justify-items: center;
+  margin-top: 6vmin;
+}
+
+.CardBody {
+  display: flex;
+  position: relative;
+  background-color: white;
+}
+
+.CardImage {
+  display: flex;
+  height: 100%;
+  width: 20%;
+  border-radius: 7vmin;
+  object-fit: cover;
 }
 
 .Card {
   display: flex;
-  flex-direction: column;
-  justify-items: center;
+  position: relative;
   width: 80vmax;
-  height: 10vmax;
-  border: 3px solid var(--SwampGreen);
-  background-color: white;
-  margin-bottom: 1vmin;
+  height: 13vmax;
+  margin-bottom: 5vmin;
+  border-radius: 7vmin;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  flex-wrap: wrap;
 }
 
 .CardText {
+  display: flex;
   font-family: "Quasimoda", sans-serif;
   color: black;
   margin-left: 5vmin;
 }
 
+.PriceCard {
+  display: flex;
+  position: absolute;
+  top: 6vmin;
+  right: 2vmin;
+}
+
 .CardPrice {
-  font-family: "Quasimoda", sans-serif;
+  font-family: "Articulat", sans-serif;
+  font-size: 7vmin;
   color: black;
-  justify-items: right;
 }
 
 .CardLink {
   font-family: "Quasimoda", sans-serif;
+  font-size: 4vmin;
   color: black;
-  margin-left: 30vmin;
-  margin-top: 2vmin;
+  margin-left: 5vmin;
+  margin-top: 3vmin;
+  text-wrap: pretty;
 
   a:visited {
     color: black;

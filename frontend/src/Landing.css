@@ -18,7 +18,7 @@ html, body, #root {
     height: 100vh;
     pointer-events: none;
     filter: blur(4px);
-  }
+}
   
   .canvas-bg {
     width: 100%;
@@ -126,4 +126,3 @@ html, body, #root {
     font-size: 1.1rem;
     color: #555;
   }
-  

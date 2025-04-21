@@ -1,49 +1,39 @@
-import React, { Suspense, useRef, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import React, { Suspense, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF} from "@react-three/drei";
 import "./Landing.css";
 import azis from "./resources/images/importantazis.jpg";
-import logo from "./resources/3js/GatorTradeLogo.glb"
+import logo from "./resources/3js/GatorTradeLogo-3.gltf"
 
-const LogoModel = () => {
+const LogoModel = React.forwardRef((props, ref) => {
     const { scene } = useGLTF(logo);
   
     return (
       <primitive
         object={scene}
-        scale={[5, 5, 5]}           // Scale the model (uniform or non-uniform)
-        position={[0, 0, 0]}       // Move it in the 3D space (x, y, z)
-        rotation={[0, Math.PI / 2, 0]} // Rotate it (x, y, z in radians)
+        scale={[2.6, 2.6, 2.6]}
+        position={[-0.025, 0, -2]}
+        rotation={[-Math.PI*1/9, Math.PI * 7/8, 0]}
+        ref={ref} // 👈 forward the ref here
+        {...props}
       />
     );
-  };
+  });
 
 const BackgroundScene = () => {
-    const { camera } = useThree();
-    const scrollYRef = useRef(0);
     const modelRef = useRef();
   
-    useEffect(() => {
-      const handleScroll = () => {
-        scrollYRef.current = window.scrollY;
-      };
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-  
     useFrame(() => {
-      const scrollEffect = scrollYRef.current * 0.005;
-      camera.position.y += (scrollEffect - camera.position.y) * 0.05;
       if (modelRef.current) {
-        modelRef.current.position.y = -scrollEffect * 0.2;
+        modelRef.current.rotation.z += 0.005;
       }
     });
   
     return (
-      <group ref={modelRef}>
-        <LogoModel />
-      </group>
-    );
+        <group>
+          <LogoModel ref={modelRef} />
+        </group>
+      );
   };
 
 const Landing = () => {
@@ -54,12 +44,12 @@ const Landing = () => {
           <Canvas
             className="canvas-bg"
             gl={{ preserveDrawingBuffer: true }}
-            camera={{ position: [0, 0, 10], fov: 40 }}
+            camera={{ position: [0, 0, 0], fov: 40 }}
           >
             <color attach="background" args={["#FFFFFF"]} />
             <Suspense fallback={null}>
-              <ambientLight intensity={0.9} />
-              <directionalLight position={[2, 5, 2]} intensity={10}/>
+              <ambientLight intensity={.1} />
+              <directionalLight position={[2, 5, 2]} intensity={3}/>
               <BackgroundScene />
               <OrbitControls enableZoom={false} enablePan={false} />
             </Suspense>
@@ -113,3 +103,4 @@ const Landing = () => {
   
 
 export default Landing;
+

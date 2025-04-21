@@ -1,3 +1,5 @@
+CSS
+
 /* landing.css */
 html, body, #root {
     margin: 0;
@@ -15,6 +17,7 @@ html, body, #root {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
+    filter: blur(4px);
 }
   
 .canvas-bg {
@@ -39,7 +42,7 @@ html, body, #root {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: transparent; /* remove solid background */
+    border-radius: 80px;
     color: #95F09B;
     text-align: center;
     padding: 0 1rem;
@@ -87,7 +90,7 @@ html, body, #root {
   
 .card {
     display: flex;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.75);
     border-radius: 80px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -123,4 +126,3 @@ html, body, #root {
     font-size: 1.1rem;
     color: #555;
 }
-  

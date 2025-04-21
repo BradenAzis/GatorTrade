@@ -1,5 +1,5 @@
-import React, { Suspense, useRef, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import React, { Suspense, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF} from "@react-three/drei";
 import "./Landing.css";
 import azis from "./resources/images/importantazis.jpg";
@@ -21,21 +21,10 @@ const LogoModel = React.forwardRef((props, ref) => {
   });
 
 const BackgroundScene = () => {
-    const scrollYRef = useRef(0);
     const modelRef = useRef();
   
-    useEffect(() => {
-      const handleScroll = () => {
-        scrollYRef.current = window.scrollY;
-      };
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-  
     useFrame(() => {
-      const scrollEffect = scrollYRef.current * 0.003;
       if (modelRef.current) {
-        //modelRef.current.position.y = scrollEffect;
         modelRef.current.rotation.z += 0.005;
       }
     });

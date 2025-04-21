@@ -136,7 +136,7 @@ export default function Messages() {
           {messages.map(msg => (
             <div
               key={msg._id}
-              className={`chat-bubble ${msg.sender === selectedChat.otherUser._id ? 'received' : 'sent'}`}
+              className={`chat-bubble ${msg.sender === userId ? 'sent' : 'received'}`}
             >
               {msg.text}
             </div>

@@ -39,7 +39,7 @@
   font-size: 8vmin;
   color: var(--GatorGreen);
   font-family: "Quasimoda", sans-serif;
-  margin: 1vmin auto 1vmin 0;
+  margin: 0;
 }
 
 .ContentSubHeader {
@@ -57,6 +57,13 @@
 }
 
 .ParagraphText {
+  margin: 0;
+  font-size: 3vmin;
+  font-family: "Articulat", sans-serif;
+  color: black;
+}
+
+.PricingText {
   margin: 0;
   font-size: 3vmin;
   font-family: "Articulat", sans-serif;
@@ -108,8 +115,7 @@
 }
 
 .SearchBar input[type=text]{
-  margin-left: 3vmin;
-  margin-right: 3vmin;
+  margin: 3vmin;
   padding: 6px;
   background-color: white;
   width: 50vw;
@@ -128,34 +134,36 @@
 
 .InputField input[type=text]{
   padding: 6px;
-  background-color: white;
+  background-color: #edffee;
   width: 50vw;
   font-size: 3vmin;
   border-radius: 10px;
   font-family: "Articulat", sans-serif;
   margin: 1vmin;
+  border: none;
 }
 
 .ParagraphField textarea {
   padding: 6px;
-  background-color: white;
+  background-color: #edffee;
   width: 50vw;
   font-size: 3vmin;
-  border-radius: 10px;
-  border-color: black;
   font-family: "Articulat", sans-serif;
+  border-radius: 10px;
   margin: 1vmin;
   height: 40vmin;
+  border: none;
 }
 
 .PriceInput input[type=text]{
   padding: 6px;
-  background-color: white;
+  background-color: #edffee;
   width: 3vw;
   font-size: 3vmin;
   border-radius: 10px;
   font-family: "Articulat", sans-serif;
   margin: 1vmin;
+  border: none;
 }
 
 .Button {
@@ -168,8 +176,9 @@
   border-radius: 20px;
   width: fit-content;
   text-align: center;
-  padding: 0 15px;
+  padding: 0 23px;
   margin-top: 3vmin;
+  height: 6vmin;
 }
 
 .UploadButton input[type=file]{

@@ -110,7 +110,7 @@ function Post() {
       </div>
       <h1 className={"InputHeader"}>Pricing</h1>
       <div className={"InlineContent"}>
-        <h1 className={"ParagraphText"}>$</h1>
+        <h1 className={"PricingText"}>$</h1>
         <div className={"PriceInput"}>
           <input type={"text"} name="lprice" placeholder={"0.00"} id="lprice" />
         </div>

@@ -38,11 +38,33 @@ router.get("/logout", (req, res, next) => {
   });
 });
 
-router.get("/me", (req, res) => {
+router.get("/me", isLoggedIn, (req, res) => {
     if (req.isAuthenticated()) {
       res.json(req.user);
     } else {
       res.status(401).json({ message: "Not authenticated" });
+    }
+  });
+
+router.put("/me", isLoggedIn, async (req, res) => {
+    try { 
+      const user = await GoogleUser.findById(req.user._id);
+
+      Object.assign(user, req.body);
+      await user.save();
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ message: "Error updating listing", error });
+    }
+  });
+
+  router.get("/:id", isLoggedIn, async (req, res) => {
+    try {
+      const user = await GoogleUser.findById(req.params.id);
+      if (!user) return res.status(404).json({ message: "User not found" });
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching user", error });
     }
   });
 

@@ -6,7 +6,7 @@ html, body, #root {
     padding: 0;
     height: 100%;
     overflow-x: hidden;
-  }
+}
   
   /* This forces the canvas to be the background */
 .canvas-container {
@@ -18,12 +18,12 @@ html, body, #root {
     height: 100vh;
     pointer-events: none;
     filter: blur(4px);
-  }
+}
   
-  .canvas-bg {
+.canvas-bg {
     width: 100%;
     height: 100%;
-  }
+}
   
 .landing-container {
     position: relative;
@@ -32,8 +32,8 @@ html, body, #root {
     color: #212529;
     padding: 0;
     margin: 0;
-    backdrop-filter: blur(0); /* optional for better contrast */
-  }
+    backdrop-filter: blur(0px); /* optional for better contrast */
+}
   
   /* Modified hero section */
 .hero {
@@ -46,35 +46,35 @@ html, body, #root {
     color: #95F09B;
     text-align: center;
     padding: 0 1rem;
-  }
+}
   
-  .hero h1 {
+.hero h1 {
     font-size: 4rem;
     margin-bottom: 0.5rem;
-  }
+}
   
-  .hero p {
+.hero p {
     font-size: 2rem;
     max-width: 800px;
-  }
+}
 
-  .spacer {
+.spacer {
     height: 20vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: transparent; /* remove solid background */
-  }
+}
 
-  .spacer2 {
+.spacer2 {
     height: 2.5vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: transparent; /* remove solid background */
-  }
+}
   
   /* Slight transparency on cards section */
 .cards-section {
@@ -86,44 +86,43 @@ html, body, #root {
     margin: auto;
     background: transparent; /* remove solid background */
     border-radius: 20px;
-  }
+}
   
-  .card {
+.card {
     display: flex;
     background-color: rgba(255, 255, 255, 0.75);
     border-radius: 80px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     flex-wrap: wrap;
-  }
+}
   
-  .card.reverse {
+.card.reverse {
     flex-direction: row-reverse;
-  }
+}
   
-  .card img {
+.card img {
     padding: 30px;
     border-radius: 80px;
     width: 100%;
     max-width: 450px;
     object-fit: cover;
-  }
+}
   
-  .card-text {
+.card-text {
     padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex: 1;
-  }
+}
   
-  .card-text h2 {
+.card-text h2 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
-  }
+}
   
-  .card-text p {
+.card-text p {
     font-size: 1.1rem;
     color: #555;
-  }
-  
+}

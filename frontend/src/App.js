@@ -7,8 +7,8 @@ import Post from './Post';
 import Messages from './Messages'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import logo from './resources/images/GatorTradeLogo.png';
-import ListingInfo from "./ListingInfo";
 import {useEffect} from "react";
+import ListingPage from "./ListingPage";
 
 
 function App() {
@@ -62,8 +62,9 @@ function App() {
             <Route path="/listings" element={<Listings />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/messages" element={<Messages />} />
-            <Route path="/listings/:id" element={<ListingInfo />} />
+            <Route path="/listings/:id" element={<ListingPage />} />
             <Route path="/post" element={<Post />} />
+            <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
     </BrowserRouter>
   );

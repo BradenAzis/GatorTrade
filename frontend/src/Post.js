@@ -60,7 +60,7 @@ function Post() {
 
       const listingResult = await listingRes.json();
       console.log("Listing created:", listingResult);
-      navigate(`/listing/${listingResult._id}`); // redirects to the listing page after creation
+      navigate(`/Listings/${listingResult._id}`); // redirects to the listing page after creation
 
     } catch (err) {
       console.error("Listing creation failed:", err);
@@ -103,7 +103,7 @@ function Post() {
       <h1 className={"ContentHeader"}>Create a Listing</h1>
       <h1 className={"InputHeader"}>Title & Description</h1>
       <div className={"InputField"}>
-        <input type={"text"} name="ltitle" id="ltitle" placeholder={"Listing Title"} />
+        <input type={"text"} name="ltitle" maxlength="55" id="ltitle" placeholder={"Listing Title"} />
       </div>
       <div className={"ParagraphField"}>
         <textarea name={"ldesc"} placeholder={"Listing Description"} id={"ldesc"} />

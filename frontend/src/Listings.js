@@ -30,9 +30,10 @@ const Listing = () => {
                 <input type="text" id="listinginput"  name="lquery" placeholder="Search for listings..." onKeyDown={Search}/>
             </div>
             <div className="UserListings">
-                    {listings && listings.map((listings) => (
-                        <ListingInfo key={listings._id} listings={listings} />
-                    ))}
+            {listings && listings.map((listing) => (
+                <ListingInfo key={listing._id} listing={listing} />
+            ))}
+
             </div>
         </div>
     );

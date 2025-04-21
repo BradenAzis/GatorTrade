@@ -1,4 +1,12 @@
-.ProfilePicture {
+input[type="file"] {
+    display: none;
+}
+
+.custom-upload {
+    cursor: pointer;
+}
+
+.custom-upload img {
     border-radius: 50%;
     width: 25vmin;
     height: 25vmin;

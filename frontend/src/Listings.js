@@ -26,13 +26,17 @@ const Listing = () => {
 
     return (
         <div className="PageContent">
-            <div className="SearchBar">
-                <input type="text" id="listinginput"  name="lquery" placeholder="Search for listings..." onKeyDown={Search}/>
+            <div style={{display: "flex", justifyContent: "space-between", marginRight: "2vw"}}>
+                <div className="SearchBar">
+                    <input type="text" id="listinginput"  name="lquery" placeholder="Search for listings..." onKeyDown={Search}/>
+                </div>
+                <a className={"Button"} href={'/post'}>Create a Post</a>
             </div>
             <div className="UserListings">
-                    {listings && listings.map((listings) => (
-                        <ListingInfo key={listings._id} listings={listings} />
-                    ))}
+            {listings && listings.map((listing) => (
+                <ListingInfo key={listing._id} listing={listing} />
+            ))}
+
             </div>
         </div>
     );

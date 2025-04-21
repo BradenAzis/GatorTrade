@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 import './App.css';
 
 export default function Messages() {
+  const location = useLocation();
+  const chat = location.state?.chat;
   const [chats, setChats] = useState([]);
   const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -99,6 +102,17 @@ export default function Messages() {
       });// emit to server
     setNewMessage('');
   };
+
+  useEffect(() => {
+    if (chat) {
+      console.log(chat);
+      const filteredChat = {
+        ...chat,
+        otherUser: chat.participants.find(p => p !== userId) || null,
+      };
+      setSelectedChat(filteredChat);
+    }
+  }, [chat]);
 
   return (
     <div className="messages-container">

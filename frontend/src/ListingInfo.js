@@ -1,6 +1,6 @@
-const ListingInfo = ({listings}) => {
-
-
+const ListingInfo = ({ listing }) => {
+    if (!listing) return null;
+  
     return (
         <div className="Card">
             <img className="CardImage" src={listings.images[0]} alt={""}></img>
@@ -19,6 +19,17 @@ const ListingInfo = ({listings}) => {
                 </div>
             </div>
         </div>
-    )
-}
-export default ListingInfo;
+  
+        <div className="CardPrice">
+          <p>${listing.price}</p>
+        </div>
+  
+        <div className="CardText">
+          <p>{listing._id}</p>
+        </div>
+      </div>
+    );
+  };
+  
+  export default ListingInfo;
+  

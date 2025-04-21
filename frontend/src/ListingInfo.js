@@ -3,33 +3,23 @@ const ListingInfo = ({ listing }) => {
   
     return (
         <div className="Card">
-            <img className="CardImage" src={listings.images[0]} alt={""}></img>
+            <img className="CardImage" src={listing.images[0]} alt={""}></img>
             <div className="CardBody">
                 <div className="CardLink">
-                    <a href={`/Listings/${listings._id}`}>{listings.title}</a>
+                    <a href={`/Listings/${listing._id}`}>{listing.title}</a>
                 </div>
 
                 <div className="CardText">
-                    <p>{listings.tags}</p>
+                    <p>{listing.tags}</p>
                 </div>
             </div>
             <div className="PriceCard">
                 <div className="CardPrice">
-                    <p>{"$" + listings.price}</p>
+                    <p>{"$" + listing.price}</p>
                 </div>
             </div>
         </div>
-  
-        <div className="CardPrice">
-          <p>${listing.price}</p>
-        </div>
-  
-        <div className="CardText">
-          <p>{listing._id}</p>
-        </div>
-      </div>
     );
   };
   
   export default ListingInfo;
-  

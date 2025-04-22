@@ -13,7 +13,7 @@ router.get("/google", passport.authenticate("google", { scope: ["email", "profil
 router.get("/google/callback",
   passport.authenticate("google", {
     successRedirect: "http://localhost:3000", //change to home page or wherever the user should go on succesfful login
-    failureRedirect: "/auth/failure" //where user is sent on failed login
+    failureRedirect: "http://localhost:3000" //where user is sent on failed login
   })
 );
 

@@ -28,13 +28,12 @@ function App() {
 
         if (!response.ok) {
             console.log(response);
-            console.log("AAAAAAAAAGGGGGGH")
             setButtonName("Login")
             setButtonURL('http://localhost:5001/auth/google')
+            alert('Authentication failed. Google account must be affiliated with a ufl email address.');
         }
         else{
             console.log(response);
-            console.log("YES KING")
             setButtonName("My Profile")
             setButtonURL('http://localhost:3000/profile')
             document.getElementById("listingsButton").style.visibility = "visible";

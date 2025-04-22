@@ -9,6 +9,7 @@ import Messages from './Messages'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import logo from './resources/images/GatorTradeLogo.png';
 import {useEffect, useState} from "react";
+import UserProfile from "./UserProfile";
 
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/listings/:id" element={<ListingPage />} />
+            <Route path="/profile/:id" element={<UserProfile />} />
             <Route path="/post" element={<Post />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>

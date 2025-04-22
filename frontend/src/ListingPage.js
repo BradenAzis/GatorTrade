@@ -65,13 +65,13 @@ function ListingPage() {
 
 
         <div className="listing-info">
-          <h1>{listing.title}</h1>
+          <h1 className="listing-title">{listing.title}</h1>
           <p className="listing-price">${listing.price}</p>
           <p className="listing-description">{listing.description}</p>
           <div className="listing-tags">
             {listing.tags.map((tag, index) => (
               <span className="tag" key={index}>{tag}</span>
-            ))}
+          ))}
           </div>
         </div>
       </div>

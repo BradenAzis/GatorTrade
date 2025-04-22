@@ -33,6 +33,7 @@ console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
 
 
 // middleware
+app.set('trust proxy', 1);
 app.use(session({ //client session management
   secret: process.env.SESSION_SECRET, //secret used to create session ID cookie
   resave: false,

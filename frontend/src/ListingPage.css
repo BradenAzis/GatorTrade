@@ -1,3 +1,19 @@
+@font-face {
+    font-family: Quasimoda;
+    src:url("resources/fonts/Quasimoda Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: Articulat;
+    src:url("resources/fonts/ArticulatCF-Medium.ttf") format("truetype");
+}
+
+:root {
+    --SwampGreen: #4C704F;
+    --GatorGreen: #95F09B;
+    --Mint: #DBF0E3;
+}
+
 .listing-main {
     display: flex;
     flex-direction: row;
@@ -70,9 +86,9 @@
 }
 
 .listing-price {
-    color: green;
-    font-weight: bold;
-    font-size: 1.5rem;
+    color: var(--SwampGreen);
+    font-family: "Articulat", sans-serif;
+    font-size: 2rem;
     margin-bottom: 12px;
 }
   
@@ -121,9 +137,19 @@
 }
   
 .tag {
-    background-color: #eee;
-    padding: 6px 12px;
-    border-radius: 16px;
-    margin-right: 8px;
-    font-size: 0.9rem;
+    background-color: var(--Mint);
+    font-family: "Articulat", sans-serif;
+    padding: 1vmin 2vmin;
+    border-radius: 3vmin;
+    margin-right: 2vmin;
+    font-size: 1rem;
+}
+
+.listing-title {
+    font-family: "Quasimoda", sans-serif;
+    font-size: 2rem;
+}
+
+.listing-description {
+    font-family: "Articulat", sans-serif;
 }

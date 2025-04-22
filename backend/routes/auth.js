@@ -12,7 +12,7 @@ router.get("/google", passport.authenticate("google", { scope: ["email", "profil
 // google OAuth callback
 router.get("/google/callback",
   passport.authenticate("google", {
-    successRedirect: "http://localhost:3000", //change to home page or wherever the user should go on succesfful login
+    successRedirect: `${process.env.REACT_APP_FRONTEND_URL}`, //change to home page or wherever the user should go on succesfful login
     failureRedirect: "/auth/failure" //where user is sent on failed login
   })
 );

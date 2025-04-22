@@ -24,7 +24,7 @@ function Post() {
       });
 
       try {
-        const imageRes = await fetch("http://localhost:5001/upload/image", {
+        const imageRes = await fetch(`${process.env.REACT_APP_BACKEND_URI}/upload/image`, {
           method: "POST",
           body: imageData
         });
@@ -47,7 +47,7 @@ function Post() {
     };
 
     try {
-      const listingRes = await fetch("http://localhost:5001/listings", {
+      const listingRes = await fetch(`${process.env.REACT_APP_BACKEND_URI}/listings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

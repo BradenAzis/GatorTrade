@@ -12,7 +12,7 @@ function Profile(){
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get("http://localhost:5001/listings");
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URI}/listings`);
             setListings(response.data);
             console.log(response.data);
         }
@@ -23,7 +23,7 @@ function Profile(){
     useEffect(() => {
         const fetchCurrentUser = async () => {
             try {
-                const res = await axios.get("http://localhost:5001/auth/me", {
+                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URI}/auth/me`, {
                     withCredentials: true
                 });
                 setUserInfo(res.data);
@@ -51,7 +51,7 @@ function Profile(){
                 const imageData = new FormData();
                 imageData.append("images", file);
 
-                const imageRes = await fetch("http://localhost:5001/upload/image", {
+                const imageRes = await fetch(`${process.env.REACT_APP_BACKEND_URI}/upload/image`, {
                     method: "POST",
                     body: imageData
                 });
@@ -64,7 +64,7 @@ function Profile(){
                 const pfpData = {profilePicture: imageUrl}
                 console.log(JSON.stringify(pfpData));
 
-                const pfpUpdate = await fetch("http://localhost:5001/auth/me", {
+                const pfpUpdate = await fetch(`${process.env.REACT_APP_BACKEND_URI}/auth/me`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
@@ -99,7 +99,7 @@ function Profile(){
         console.log(JSON.stringify(bioData));
 
         try {
-            const bioUpdate = await fetch("http://localhost:5001/auth/me", {
+            const bioUpdate = await fetch(`${process.env.REACT_APP_BACKEND_URI}/auth/me`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

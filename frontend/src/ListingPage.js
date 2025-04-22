@@ -13,14 +13,14 @@ function ListingPage() {
 
   useEffect(() => {
     const fetchListing = async () => {
-      const res = await fetch(`http://localhost:5001/listings/${id}`);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URI}/listings/${id}`);
       const data = await res.json();
       setListing(data);
     };
     fetchListing();
 
     const fetchCurrentUser = async () => {
-      const res = await fetch('http://localhost:5001/auth/me', {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URI}/auth/me`, {
         credentials: 'include'
       });
       const user = await res.json();
@@ -88,7 +88,7 @@ function ListingPage() {
             className="ContactSeller"
             onClick={async () => {
               try {
-                const res = await fetch('http://localhost:5001/chats', {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URI}/chats`, {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   credentials: 'include',

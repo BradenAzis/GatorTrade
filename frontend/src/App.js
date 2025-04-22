@@ -30,7 +30,10 @@ function App() {
             console.log(response);
             setButtonName("Login")
             setButtonURL('http://localhost:5001/auth/google')
-            alert('Authentication failed. Google account must be affiliated with a ufl email address.');
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('loginFailed') === 'true') {
+                alert('Authentication failed. Google accounts must be affiliated with a ufl email.');
+            }
         }
         else{
             console.log(response);
@@ -66,7 +69,7 @@ function App() {
             </div>
         </div>
         <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={<LandingPage/>}/>
             <Route path="/about" element={<HomePage />} />
             <Route path="/listings" element={<Listings />} />
             <Route path="/profile" element={<Profile />} />

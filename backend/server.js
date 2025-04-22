@@ -17,7 +17,7 @@ require("./config/passport");
 
 const app = express();
 
-app.use(cors({origin : `${process.env.REACT_APP_FRONTEND_URL}`, credentials : true }));
+app.use(cors({origin : ['http://localhost:3000', 'https://gatortrade.vercel.app'], credentials : true }));
 
 const server = http.createServer(app); // socket.io
 const io = socketIO(server, {

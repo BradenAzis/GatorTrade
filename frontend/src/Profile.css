@@ -1,3 +1,19 @@
+@font-face {
+    font-family: Quasimoda;
+    src:url("resources/fonts/Quasimoda Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: Articulat;
+    src:url("resources/fonts/ArticulatCF-Medium.ttf") format("truetype");
+}
+
+:root {
+    --SwampGreen: #4C704F;
+    --GatorGreen: #95F09B;
+    --Mint: #DBF0E3;
+}
+
 input[type="file"] {
     display: none;
 }
@@ -33,4 +49,16 @@ input[type="file"] {
     margin: auto;
     background: transparent; /* remove solid background */
     border-radius: 20px;
+}
+
+.BioField textarea {
+    padding: 6px;
+    background-color: #edffee;
+    width: 30vw;
+    font-size: 3vmin;
+    font-family: "Articulat", sans-serif;
+    border-radius: 10px;
+    margin: 1vmin;
+    height: 3vmin;
+    border: none;
 }

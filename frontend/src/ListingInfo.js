@@ -5,7 +5,6 @@ const ListingInfo = ({ listing }) => {
     for (let i = 0; i < listing.tags.length; i++) {
         tags += listing.tags[i] + ",";
     }
-
     return (
         <div className="Card">
             <img className="CardImage" src={listing.images[0]} alt={""}></img>
@@ -29,6 +28,7 @@ const ListingInfo = ({ listing }) => {
             </div>
         </div>
     );
-  };
-  
-  export default ListingInfo;
+};
+
+export default ListingInfo;
+ 

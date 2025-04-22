@@ -6,7 +6,7 @@ const listingSchema = new mongoose.Schema({
   description: { type: String, required: true },
   price: { type: Number, required: true },
   images: { type: [String], default: [], required: true }, // image URLs from Cloudinary route
-  tags: { type: [String], default: [] },
+  tags: { type: [String], default: [], required: true },
   createdAt: { type: Date, default: Date.now },
 });
 

@@ -1,7 +1,9 @@
 const express = require("express");
 const passport = require("passport");
+const mongoose = require("mongoose");
 const router = express.Router();
 const isLoggedIn = require("../middleware/authMiddleware");
+const GoogleUser = require("../models/GoogleUser");
 
 
 // route to initiate Google login
@@ -38,22 +40,25 @@ router.get("/logout", (req, res, next) => {
   });
 });
 
-router.get("/me", isLoggedIn, (req, res) => {
+router.get("/me", isLoggedIn, async (req, res) => {
     if (req.isAuthenticated()) {
-      res.json(req.user);
+        const freshUser = await GoogleUser.findById(req.user._id); // ✅ fetch fresh user
+        res.json(freshUser);
     } else {
       res.status(401).json({ message: "Not authenticated" });
     }
   });
 
 router.put("/me", isLoggedIn, async (req, res) => {
-    try { 
+    console.log(req.body);
+    try {
       const user = await GoogleUser.findById(req.user._id);
 
       Object.assign(user, req.body);
       await user.save();
       res.json(user);
     } catch (error) {
+        console.log(error);
       res.status(500).json({ message: "Error updating listing", error });
     }
   });

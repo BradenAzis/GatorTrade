@@ -18,7 +18,7 @@ function App() {
     const [ButtonURL, setButtonURL] = useState(null);
 
     const CheckUserState = async () => {
-        const response = await fetch('http://localhost:5001/auth/me', {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URI}/auth/me`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,13 +30,13 @@ function App() {
             console.log(response);
             console.log("AAAAAAAAAGGGGGGH")
             setButtonName("Login")
-            setButtonURL('http://localhost:5001/auth/google')
+            setButtonURL(`${process.env.REACT_APP_BACKEND_URI}/auth/google`)
         }
         else{
             console.log(response);
             console.log("YES KING")
             setButtonName("My Profile")
-            setButtonURL('http://localhost:3000/profile')
+            setButtonURL(`${process.env.REACT_APP_FRONTEND_URL}/profile`)
             document.getElementById("listingsButton").style.visibility = "visible";
             document.getElementById("listingsButton").style.width = "fit-content";
             document.getElementById("messagesButton").style.visibility = "visible";

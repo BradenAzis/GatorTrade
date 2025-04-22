@@ -8,7 +8,7 @@ const Listing = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get("http://localhost:5001/listings");
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URI}/listings`);
             setListings(response.data);
         }
         fetchData();
@@ -17,7 +17,7 @@ const Listing = () => {
     function Search(e){
         if (e.keyCode === 13) {
                 const searchData = async () => {
-                    const response = await axios.get("http://localhost:5001/listings?search=" + e.target.value);
+                    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URI}/listings?search=` + e.target.value);
                     setListings(response.data);
                 }
                 searchData();

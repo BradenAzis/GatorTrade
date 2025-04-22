@@ -23,4 +23,4 @@ const ListingInfo = ({ listing }) => {
 };
 
 export default ListingInfo;
-  
+ 

@@ -26,7 +26,6 @@ function Profile(){
                 const res = await axios.get("http://localhost:5001/auth/me", {
                     withCredentials: true
                 });
-                console.log("BING")
                 setUserInfo(res.data);
                 console.log(res.data["profilePicture"])
                 setMyProfile(res.data["profilePicture"])
@@ -43,6 +42,9 @@ function Profile(){
         const reader = new FileReader();
 
         reader.onload = async (e) => {
+            if (e.target.result == null) {
+                return;
+            }
             document.getElementById("pfp").setAttribute("src", e.target.result);
             try {
 
@@ -76,23 +78,22 @@ function Profile(){
 
             } catch (err) {
                 console.error("Image upload failed:", err);
-                return;
             }
         };
 
         reader.readAsDataURL(file);
     }
 
-    const bioEdit = (event) => {
+    const bioEdit = () => {
         document.getElementById("bioText").style.visibility = "hidden";
         document.getElementById("bioText").style.fontSize = "0";
         document.getElementById("bioBox").style.visibility = "visible";
         document.getElementById("bioBox").style.height = "3vmin";
         document.getElementById("edit").innerHTML = "Save";
-        document.getElementById("edit").onclick = (event) => {bioSave()}
+        document.getElementById("edit").onclick = () => {bioSave()}
     }
 
-    const bioSave = async (event) => {
+    const bioSave = async () => {
         const newText = document.getElementById("bioInput").value;
         const bioData = {bio: newText};
         console.log(JSON.stringify(bioData));
@@ -118,7 +119,7 @@ function Profile(){
         document.getElementById("bioText").style.visibility = "visible";
         document.getElementById("bioText").style.fontSize = "3vmin";
         document.getElementById("edit").innerHTML = "Edit Bio";
-        document.getElementById("edit").onclick = (event) => {bioEdit()}
+        document.getElementById("edit").onclick = () => {bioEdit()}
     }
 
     return (

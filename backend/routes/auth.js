@@ -10,11 +10,16 @@ const GoogleUser = require("../models/GoogleUser");
 router.get("/google", passport.authenticate("google", { scope: ["email", "profile"] }));
 
 // google OAuth callback
-router.get("/google/callback",
-  passport.authenticate("google", {
-    successRedirect: `${process.env.REACT_APP_FRONTEND_URL}`, //change to home page or wherever the user should go on succesfful login
-    failureRedirect: "/auth/failure" //where user is sent on failed login
-  })
+router.get("/google/callback", passport.authenticate("google", { failureRedirect: "/auth/failure" }), (req, res) => {
+    // ensure the session is created
+    req.login(req.user, (err) => {
+      if (err) {
+        return res.redirect("/auth/failure");
+      }
+      // Now that the session is set, redirect to frontend
+      res.redirect(`${process.env.REACT_APP_FRONTEND_URL}`);
+    });
+  }
 );
 
 // test route to check if login is working and getting proper user info

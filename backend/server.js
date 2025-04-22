@@ -37,7 +37,9 @@ app.use(session({ //client session management
   secret: process.env.SESSION_SECRET, //secret used to create session ID cookie
   resave: false,
   saveUninitialized: false,
-  cookie:{maxAge: 1000 * 60 * 60} //cookie lasts 1 hour (1000ms * 60 * 60)
+  cookie:{maxAge: 1000 * 60 * 60}, //cookie lasts 1 hour (1000ms * 60 * 60)
+  sameSite: 'none',   // this needs to be none for production to work
+  secure: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());

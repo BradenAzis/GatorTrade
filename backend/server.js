@@ -17,12 +17,12 @@ require("./config/passport");
 
 const app = express();
 
-app.use(cors({origin : 'http://localhost:3000', credentials : true }));
+app.use(cors({origin : `${process.env.REACT_APP_FRONTEND_URL}`, credentials : true }));
 
 const server = http.createServer(app); // socket.io
 const io = socketIO(server, {
   cors: {
-    origin: 'http://localhost:3000', // your frontend origin
+    origin: `${process.env.REACT_APP_FRONTEND_URL}`, // your frontend origin
     methods: ['GET', 'POST'],
     credentials: true
   }

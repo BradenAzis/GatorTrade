@@ -18,6 +18,8 @@ function App() {
     const [ButtonURL, setButtonURL] = useState(null);
 
     const CheckUserState = async () => {
+        console.log(process.env.REACT_APP_BACKEND_URI)
+        console.log(process.env.REACT_APP_FRONTEND_URL)
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URI}/auth/me`, {
             method: 'GET',
             headers: {

@@ -92,6 +92,7 @@
     margin-bottom: 12px;
 }
   
+/* Note: On certain screens this behaves differently. Sometimes will have whitespace above (intended), others just covers a bit and requires scrolling. Low priority to fix. */
 .seller-details {
     position: sticky;
     bottom: 0;

@@ -119,8 +119,9 @@
     margin-bottom: 12px;
 }
   
+/* Note: On certain screens this behaves differently. Sometimes will have whitespace above (intended), others just covers a bit and requires scrolling. Low priority to fix. */
 .seller-details {
-    position: fixed;
+    position: sticky;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -155,8 +156,6 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 24px;
-    padding-bottom: 160px
 }
 
 .listing-tags {

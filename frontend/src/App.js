@@ -1,7 +1,6 @@
 import './App.css';
 import ListingPage from './ListingPage';
 import LandingPage from './LandingPage';
-import HomePage from './HomePage';
 import Listings from './Listings';
 import Profile from './Profile';
 import Post from './Post';
@@ -70,14 +69,12 @@ function App() {
             <div className="PageButton">
                 <a href={ButtonURL}>{ButtonName}</a>
                 <a href={"/Listings"} id={"listingsButton"} style={{visibility: "hidden", width: "0"}}>Listings</a>
-                <a href="/About">About</a>
                 <a href="/Messages" id={"messagesButton"} style={{visibility: "hidden", width: "0"}}>Messages</a>
             </div>
         </div>
         <Routes>
             {/*Routes associated with different .js files*/}
             <Route path="/" element={<LandingPage/>}/>
-            <Route path="/about" element={<HomePage />} />
             <Route path="/listings" element={<Listings />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/messages" element={<Messages />} />

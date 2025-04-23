@@ -3,6 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const socketIO = require('socket.io');
+const MongoStore = require('connect-mongo');
 const mongoose = require("mongoose");
 const http = require('http');
 const cors = require("cors");
@@ -38,6 +39,7 @@ app.use(session({ //client session management
   secret: process.env.SESSION_SECRET, //secret used to create session ID cookie
   resave: false,
   saveUninitialized: false,
+  store: MongoStore.create({mongoUrl: process.env.MONGO_URI, collectionName: 'sessions'}),
   cookie:{maxAge: 1000 * 60 * 60, sameSite: 'none', secure: true} //cookie lasts 1 hour (1000ms * 60 * 60)
 }));
 app.use(passport.initialize());

@@ -60,7 +60,9 @@
   margin: 0;
   font-size: 3vmin;
   font-family: "Articulat", sans-serif;
+  letter-spacing: 0.5px;
   color: black;
+  letter-spacing: 0.5px;
 }
 
 .PricingText {
@@ -272,7 +274,7 @@
   display: flex;
   position: absolute;
   left: 5vmin;
-  top: 20vmin;
+  top: 21vmin;
 }
 
 .PriceCard {
@@ -293,7 +295,7 @@
   font-size: 4vmin;
   color: black;
   margin-left: 5vmin;
-  margin-top: 3vmin;
+  margin-top: 2vmin;
   text-wrap: pretty;
 
   a:visited {
@@ -309,13 +311,13 @@
 
 .CardProfile {
   font-family: "Articulat", sans-serif;
-  font-size: 3vmin;
+  font-size: 2.5vmin;
   color: black;
-  top: 11vmin;
-  text-wrap: pretty;
+  top: 10vmin;
   display: flex;
   position: absolute;
-  left: 12vmin;
+  left: 5vmin;
+  width: 40vmin;
 
   a:visited {
     color: black;
@@ -325,6 +327,16 @@
   a:link {
     color: black;
     text-decoration: none;
+    margin-top: 1vmin;
+    width: 100%;
+  }
+
+  img {
+    border-radius: 50%;
+    height: 5vmin;
+    width: 5vmin;
+    object-fit: cover;
+    margin-right: 2vmin;
   }
 }
 

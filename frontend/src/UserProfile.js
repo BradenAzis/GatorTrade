@@ -10,6 +10,7 @@ function UserProfile() {
     const [userInfo, setUserInfo] = useState([]);
     const [listings, setListings] = useState(null);
 
+    // All listings are pulled
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(`${process.env.REACT_APP_BACKEND_URI}/listings`);
@@ -19,6 +20,7 @@ function UserProfile() {
         fetchData();
     }, [])
 
+    // The user data for the user currently being viewed is pulled using the user id in the route
     useEffect(() => {
         const fetchCurrentUser = async () => {
             try {
@@ -36,6 +38,7 @@ function UserProfile() {
 
     return (
         <div>
+            {/*Profile card with name, profile picture and bio */}
             <div className="ProfileCardsSection">
                 <div className={"ProfileCard"}>
                     <label for="uploadFile" className="custom-upload" style={{cursor: "default"}}>
@@ -49,6 +52,7 @@ function UserProfile() {
                 <h1 className={"ContentSubHeader"}>{"Posted Listings"}</h1>
             </div>
             <div className="PageContent">
+                {/*This section displays all posts attributed to the user being viewed */}
                 <div className="UserListings">
                     {listings && listings
                         .filter((listing) => listing.user?._id === userInfo["_id"])

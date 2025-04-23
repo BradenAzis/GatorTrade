@@ -1,7 +1,6 @@
 import './App.css';
 import ListingPage from './ListingPage';
 import LandingPage from './LandingPage';
-import HomePage from './HomePage';
 import Listings from './Listings';
 import Profile from './Profile';
 import Post from './Post';
@@ -17,6 +16,7 @@ function App() {
     const [ButtonName, setButtonName] = useState(null);
     const [ButtonURL, setButtonURL] = useState(null);
 
+    // Request user information from the backend
     const CheckUserState = async () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URI}/auth/me`, {
@@ -57,6 +57,7 @@ function App() {
 
   return (
     <BrowserRouter>
+        {/*Navigation bar that remains across pages*/}
         <div className="NavBar">
             <div className="App-logo">
                 <a href="/">
@@ -66,13 +67,12 @@ function App() {
             <div className="PageButton">
                 <a href={ButtonURL}>{ButtonName}</a>
                 <a href={"/Listings"} id={"listingsButton"} style={{visibility: "hidden", width: "0"}}>Listings</a>
-                <a href="/About">About</a>
                 <a href="/Messages" id={"messagesButton"} style={{visibility: "hidden", width: "0"}}>Messages</a>
             </div>
         </div>
         <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/about" element={<HomePage />} />
+            {/*Routes associated with different .js files*/}
+            <Route path="/" element={<LandingPage/>}/>
             <Route path="/listings" element={<Listings />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/messages" element={<Messages />} />

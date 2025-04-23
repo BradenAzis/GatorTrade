@@ -99,10 +99,7 @@ router.delete("/favorites/:listingId", isLoggedIn, async (req, res) => {
   }
 });
 
-//GENERICS BELOW
-//==================================================================================================================
-
-// add a listing to "favorites"
+// add a listing to "favorites" (not in final submission)
 router.post("/favorites/:listingId", isLoggedIn, async (req, res) => {
   try {
     const user = await GoogleUser.findById(req.user._id);

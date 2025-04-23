@@ -7,7 +7,7 @@ function Post() {
   const [previewImages, setPreviewImages] = useState([]);
   const navigate = useNavigate(); 
 
-
+  // Function that sends the listing data to the backend
   const submitPost = async () => {
     const title = document.getElementById("ltitle").value;
     const description = document.getElementById("ldesc").value;
@@ -88,7 +88,8 @@ function Post() {
   
     event.target.value = null;  //reset so same file can be picked again (after removal)
   };
-  
+
+  // Removes an image from the array of uploaded images
   const removeImage = (index) => {
     const updatedImages = [...selectedImages];
     const updatedPreviews = [...previewImages];
@@ -99,8 +100,10 @@ function Post() {
   };
 
   return (
+      // Page header
     <div className={"PageContent"}>
       <h1 className={"ContentHeader"}>Create a Listing</h1>
+        {/*From this point on we have various input and upload boxes for users to put listing information in*/}
       <h1 className={"InputHeader"}>Title & Description</h1>
       <div className={"InputField"}>
         <input type={"text"} name="ltitle" maxlength="55" id="ltitle" placeholder={"Listing Title"} />

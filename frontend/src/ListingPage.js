@@ -1,13 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import {FaChevronLeft, FaChevronRight} from 'react-icons/fa';
+import {FaChevronLeft, FaChevronRight} from 'react-icons/fa'; // icons for the carousel buttons
 import './ListingPage.css';
 
 function ListingPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [listing, setListing] = useState(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // handles parsing through image array
   const [currentUser, setCurrentUser] = useState(null);
 
 
@@ -30,7 +30,7 @@ function ListingPage() {
 
   }, [id]);
 
-  if (!listing) return <p>Loading...</p>;
+  if (!listing) return <p>Loading...</p>; // moreso for debugging purposes. Listing should always exist. 
 
   const handlePrev = () => {
     setCurrentImageIndex((prev) => (prev === 0 ? listing.images.length - 1 : prev - 1));
@@ -41,6 +41,7 @@ function ListingPage() {
   };
 
   return (
+    // whole page is "listing-container" div
     <div className="listing-container">
       <div className="listing-main">
         <div className="image-carousel">
@@ -65,11 +66,14 @@ function ListingPage() {
 
 
         <div className="listing-info">
-          <h1 className="listing-title">{listing.title}</h1>
-          <p className="listing-price">${listing.price}</p>
-          <p className="listing-description">{listing.description}</p>
+          <div className="listing-title">{listing.title}</div>
+          <div className="listing-profile">
+            <a href={`/Profile/${listing.user?._id}`}>{listing.user?.firstName + " " + listing.user?.lastName}</a>
+          </div>
+          <div className="listing-price">${listing.price}</div>
+          <div className="listing-description">{listing.description}</div>
           <div className="listing-tags">
-            {listing.tags.map((tag, index) => (
+            {listing.tags.map((tag, index) => ( // uses a map to iterate through the tags array for that specific listing and display them
               <span className="tag" key={index}>{tag}</span>
           ))}
           </div>
@@ -92,7 +96,7 @@ function ListingPage() {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   credentials: 'include',
-                  body: JSON.stringify({
+                  body: JSON.stringify({ //TODO: have navigation functionality to the profile page of the user
                     sellerId: listing.user._id,
                     listingId: listing._id,
                   }),

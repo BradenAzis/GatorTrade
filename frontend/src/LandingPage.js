@@ -5,6 +5,9 @@ import { OrbitControls, useGLTF} from "@react-three/drei";
 import "./Landing.css";
 import azis from "./resources/images/importantazis.jpg";
 import logo from "./resources/3js/GatorTradeLogoSuperShiny.gltf"
+import mesImg from "./resources/images/messages.png";
+import lisImg from "./resources/images/listings.png";
+import proImg from "./resources/images/profile.png";
 
 const LogoModel = React.forwardRef((props, ref) => {
     const { scene } = useGLTF(logo);
@@ -73,7 +76,7 @@ const Landing = () => {
           </section>
           <section className="cards-section">
             <div className="card">
-              <img src={azis} alt="Card 1" />
+              <img src={lisImg} alt="Card 1" />
               <div className="card-text">
                 <h2>Easy Listings</h2>
                 <p>Create and manage your listings in seconds.</p>
@@ -87,13 +90,13 @@ const Landing = () => {
                 <h2>Verified Students Only</h2>
                 <p>Keep it safe with .edu email verification.</p>
               </div>
-              <img src={azis} alt="Card 2" />
+              <img src={proImg} alt="Card 2" />
             </div>
             <section className="spacer">
           </section>
   
             <div className="card">
-              <img src={azis} alt="Card 3" />
+              <img src={mesImg} alt="Card 3" />
               <div className="card-text">
                 <h2>Campus Connection</h2>
                 <p>Buy and sell from students right at your school.</p>

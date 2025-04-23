@@ -14,10 +14,6 @@
   --Mint: #DBF0E3;
 }
 
-body{
-  background-color: black;
-}
-
 .NavBar {
   position: sticky;
   margin-top: 1vmin;

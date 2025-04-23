@@ -10,6 +10,7 @@ function Profile(){
     const [listings, setListings] = useState(null);
     const [myProfile, setMyProfile] = useState(null);
 
+    // Request fetches all the listing data on the website
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get("http://localhost:5001/listings");
@@ -19,7 +20,7 @@ function Profile(){
         fetchData();
     }, [])
 
-
+    // Request fetches the data of the current user
     useEffect(() => {
         const fetchCurrentUser = async () => {
             try {
@@ -37,10 +38,12 @@ function Profile(){
         fetchCurrentUser();
     }, []);
 
+    // When a user uploads a new profile picture this function handles the change
     const pfpUpload = (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
 
+        // First a file reader is made to properly interpret the upload
         reader.onload = async (e) => {
             if (e.target.result == null) {
                 return;
@@ -51,11 +54,13 @@ function Profile(){
                 const imageData = new FormData();
                 imageData.append("images", file);
 
+                // Then the image is uploaded to our image hosting platform
                 const imageRes = await fetch("http://localhost:5001/upload/image", {
                     method: "POST",
                     body: imageData
                 });
 
+                // and the resulting url is saved
                 const result = await imageRes.json();
                 console.log(result.images);
                 let imageUrl = result.images[0].url
@@ -64,6 +69,7 @@ function Profile(){
                 const pfpData = {profilePicture: imageUrl}
                 console.log(JSON.stringify(pfpData));
 
+                // This url is then used to update the users profile picture in their backend user data
                 const pfpUpdate = await fetch("http://localhost:5001/auth/me", {
                     method: "PUT",
                     headers: {
@@ -84,6 +90,7 @@ function Profile(){
         reader.readAsDataURL(file);
     }
 
+    // When the edit button is clicked this function opens the input box to change the bio
     const bioEdit = () => {
         document.getElementById("bioText").style.visibility = "hidden";
         document.getElementById("bioText").style.fontSize = "0";
@@ -93,6 +100,7 @@ function Profile(){
         document.getElementById("edit").onclick = () => {bioSave()}
     }
 
+    // Once the save button is clicked this function sends the changed bio to the backend and the input box goes away
     const bioSave = async () => {
         const newText = document.getElementById("bioInput").value;
         const bioData = {bio: newText};
@@ -124,6 +132,7 @@ function Profile(){
 
     return (
         <div>
+            {/*Profile card with name, profile picture and bio, as well as input handlers to allow changing them*/}
             <div className="ProfileCardsSection">
             <div className={"ProfileCard"}>
                 <input type="file" id="uploadFile" onChange={pfpUpload}/>
@@ -142,10 +151,12 @@ function Profile(){
                     <a className={"Button"} id={"edit"} onClick={bioEdit}>Edit Bio</a>
                 </div>
             </div>
+                {/*This section displays all your posts*/}
             <h1 className={"ContentSubHeader"}>{"Posted Listings"}</h1>
         </div>
         <div className="PageContent">
             <div className="UserListings">
+                {/*The previously pulled listings are filtered down using the current users ID*/}
             {listings && listings
                 .filter((listing) => listing.user?._id === userInfo["_id"])
                 .map((listing) => (

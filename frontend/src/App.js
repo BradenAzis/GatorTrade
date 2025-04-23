@@ -17,6 +17,7 @@ function App() {
     const [ButtonName, setButtonName] = useState(null);
     const [ButtonURL, setButtonURL] = useState(null);
 
+    // Request user information from the backend
     const CheckUserState = async () => {
         const response = await fetch('http://localhost:5001/auth/me', {
             method: 'GET',
@@ -26,6 +27,7 @@ function App() {
             credentials: 'include'
         });
 
+        // If the response from the backend is negative and the route indicates a failed login, a browser alert is sent
         if (!response.ok) {
             console.log(response);
             setButtonName("Login")
@@ -35,6 +37,7 @@ function App() {
                 alert('Authentication failed. Google accounts must be affiliated with a ufl email.');
             }
         }
+        // Otherwise the user is given access to the rest of the website
         else{
             console.log(response);
             setButtonName("My Profile")
@@ -55,6 +58,7 @@ function App() {
 
   return (
     <BrowserRouter>
+        {/*Navigation bar that remains across pages*/}
         <div className="NavBar">
             <div className="App-logo">
                 <a href="/">
@@ -69,6 +73,7 @@ function App() {
             </div>
         </div>
         <Routes>
+            {/*Routes associated with different .js files*/}
             <Route path="/" element={<LandingPage/>}/>
             <Route path="/about" element={<HomePage />} />
             <Route path="/listings" element={<Listings />} />

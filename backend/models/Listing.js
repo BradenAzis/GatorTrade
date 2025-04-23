@@ -8,6 +8,7 @@ const listingSchema = new mongoose.Schema({
   images: { type: [String], default: [], required: true }, // image URLs from Cloudinary route
   tags: { type: [String], default: [] },
   createdAt: { type: Date, default: Date.now },
+
 });
 
 const Listing = mongoose.model("Listing", listingSchema);

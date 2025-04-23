@@ -17,12 +17,12 @@ require("./config/passport");
 
 const app = express();
 
-app.use(cors({origin : 'http://localhost:3000', credentials : true }));
+app.use(cors({origin : ['http://localhost:3000', 'https://gatortrade.vercel.app'], credentials : true }));
 
 const server = http.createServer(app); // socket.io
 const io = socketIO(server, {
   cors: {
-    origin: 'http://localhost:3000', // your frontend origin
+    origin: `${process.env.REACT_APP_FRONTEND_URL}`, // your frontend origin
     methods: ['GET', 'POST'],
     credentials: true
   }
@@ -33,11 +33,12 @@ console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
 
 
 // middleware
+app.set('trust proxy', 1);
 app.use(session({ //client session management
   secret: process.env.SESSION_SECRET, //secret used to create session ID cookie
   resave: false,
   saveUninitialized: false,
-  cookie:{maxAge: 1000 * 60 * 60} //cookie lasts 1 hour (1000ms * 60 * 60)
+  cookie:{maxAge: 1000 * 60 * 60, sameSite: 'lax', secure: false} //cookie lasts 1 hour (1000ms * 60 * 60)
 }));
 app.use(passport.initialize());
 app.use(passport.session());

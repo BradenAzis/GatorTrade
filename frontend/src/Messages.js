@@ -17,7 +17,7 @@ export default function Messages() {
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/auth/me", {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URI}/auth/me`, {
           withCredentials: true
         });
         setUserId(res.data._id);
@@ -29,7 +29,7 @@ export default function Messages() {
   }, []);
 
   useEffect(() => {
-    socket.current = io('http://localhost:5001', { withCredentials: true });
+    socket.current = io(`${process.env.REACT_APP_BACKEND_URI}`, { withCredentials: true });
   
     return () => {
       socket.current.disconnect();
@@ -61,7 +61,7 @@ export default function Messages() {
 
   useEffect(() => {
     const fetchChats = async () => {
-      const res = await axios.get('http://localhost:5001/chats', { withCredentials: true });
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URI}/chats`, { withCredentials: true });
       setChats(res.data);
     };
     fetchChats();
@@ -71,7 +71,7 @@ export default function Messages() {
     if (!selectedChat) return;
 
     const fetchMessages = async () => {
-      const res = await axios.get(`http://localhost:5001/messages/${selectedChat._id}`, {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URI}/messages/${selectedChat._id}`, {
         withCredentials: true,
       });
       setMessages(res.data);
@@ -83,7 +83,7 @@ export default function Messages() {
     if (!newMessage.trim()) return;
 
     const res = await axios.post(
-      'http://localhost:5001/messages',
+      `${process.env.REACT_APP_BACKEND_URI}/messages`,
       {
         chatId: selectedChat._id,
         text: newMessage,
@@ -136,7 +136,7 @@ export default function Messages() {
           {messages.map(msg => (
             <div
               key={msg._id}
-              className={`chat-bubble ${msg.sender === selectedChat.otherUser._id ? 'received' : 'sent'}`}
+              className={`chat-bubble ${msg.sender === userId ? 'sent' : 'received'}`}
             >
               {msg.text}
             </div>

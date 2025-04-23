@@ -1,9 +1,10 @@
+// Super Shiny
 import React, { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF} from "@react-three/drei";
 import "./Landing.css";
 import azis from "./resources/images/importantazis.jpg";
-import logo from "./resources/3js/GatorTradeLogo-3.gltf"
+import logo from "./resources/3js/GatorTradeLogoSuperShiny.gltf"
 
 const LogoModel = React.forwardRef((props, ref) => {
     const { scene } = useGLTF(logo);
@@ -13,7 +14,7 @@ const LogoModel = React.forwardRef((props, ref) => {
         object={scene}
         scale={[2.6, 2.6, 2.6]}
         position={[-0.025, 0, -2]}
-        rotation={[-Math.PI*1/9, Math.PI * 7/8, 0]}
+        rotation={[-0.2, -0.4, 0]}
         ref={ref} // 👈 forward the ref here
         {...props}
       />
@@ -22,10 +23,11 @@ const LogoModel = React.forwardRef((props, ref) => {
 
 const BackgroundScene = () => {
     const modelRef = useRef();
+    
   
     useFrame(() => {
       if (modelRef.current) {
-        modelRef.current.rotation.z += 0.005;
+        modelRef.current.rotation.z -= 0.005;
       }
     });
   
@@ -46,10 +48,15 @@ const Landing = () => {
             gl={{ preserveDrawingBuffer: true }}
             camera={{ position: [0, 0, 0], fov: 40 }}
           >
-            <color attach="background" args={["#FFFFFF"]} />
+            <color attach="background" args={["#0a0a0a"]} />
             <Suspense fallback={null}>
-              <ambientLight intensity={.1} />
-              <directionalLight position={[2, 5, 2]} intensity={3}/>
+              <ambientLight intensity={0} />
+              {/* Fill Light */}
+              <pointLight position={[2, 0, 2]} intensity={20000} />
+              {/* Back Light */}
+              <pointLight position={[-2, 0, -2]} intensity={20000}/>
+              {/* Key Light */}
+              <pointLight position={[-2, 0, 2]} intensity={20000} color='#95F09B'/>
               <BackgroundScene />
               <OrbitControls enableZoom={false} enablePan={false} />
             </Suspense>
@@ -59,7 +66,7 @@ const Landing = () => {
         {/* Foreground Content */}
         <div className="landing-container">
           <section className="hero">
-            <h1>Welcome to GatorTrade</h1>
+            <h1>Welcome to <span style={{ color: "#95F09B" }}>GatorTrade</span></h1>
             <p>Find and sell everything you need for college life.</p>
           </section>
           <section className="spacer">
@@ -103,4 +110,5 @@ const Landing = () => {
   
 
 export default Landing;
+
 

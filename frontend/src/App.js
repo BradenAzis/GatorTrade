@@ -17,6 +17,7 @@ function App() {
     const [ButtonName, setButtonName] = useState(null);
     const [ButtonURL, setButtonURL] = useState(null);
 
+    // Request user information from the backend
     const CheckUserState = async () => {
         console.log(process.env.REACT_APP_BACKEND_URI)
         console.log(process.env.REACT_APP_FRONTEND_URL)
@@ -28,15 +29,19 @@ function App() {
             credentials: 'include'
         });
 
+        // If the response from the backend is negative and the route indicates a failed login, a browser alert is sent
         if (!response.ok) {
             console.log(response);
-            console.log("AAAAAAAAAGGGGGGH")
             setButtonName("Login")
             setButtonURL(`${process.env.REACT_APP_BACKEND_URI}/auth/google`)
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('loginFailed') === 'true') {
+                alert('Authentication failed. Google accounts must be affiliated with a ufl email.');
+            }
         }
+        // Otherwise the user is given access to the rest of the website
         else{
             console.log(response);
-            console.log("YES KING")
             setButtonName("My Profile")
             setButtonURL(`${process.env.REACT_APP_FRONTEND_URL}/profile`)
             document.getElementById("listingsButton").style.visibility = "visible";
@@ -55,6 +60,7 @@ function App() {
 
   return (
     <BrowserRouter>
+        {/*Navigation bar that remains across pages*/}
         <div className="NavBar">
             <div className="App-logo">
                 <a href="/">
@@ -69,7 +75,8 @@ function App() {
             </div>
         </div>
         <Routes>
-            <Route path="/" element={<LandingPage />} />
+            {/*Routes associated with different .js files*/}
+            <Route path="/" element={<LandingPage/>}/>
             <Route path="/about" element={<HomePage />} />
             <Route path="/listings" element={<Listings />} />
             <Route path="/profile" element={<Profile />} />

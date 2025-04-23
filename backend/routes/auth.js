@@ -10,17 +10,18 @@ const GoogleUser = require("../models/GoogleUser");
 router.get("/google", passport.authenticate("google", { scope: ["email", "profile"] }));
 
 // google OAuth callback
-router.get("/google/callback", passport.authenticate("google", { failureRedirect: "/auth/failure" }), (req, res) => {
-    // ensure the session is created
-    req.login(req.user, (err) => {
-      if (err) {
-        return res.redirect("/auth/failure");
-      }
-      // Now that the session is set, redirect to frontend
-      res.redirect(`${process.env.REACT_APP_FRONTEND_URL}`);
+router.get("/google/callback", (req, res, next) => {
+  passport.authenticate("google", (err, user, info) => {
+    if (err || !user) return res.redirect("/auth/failure");
+
+    req.logIn(user, (err) => {
+      if (err) return res.redirect("/auth/failure");
+
+      // Now the session is definitely set before redirect
+      return res.redirect(process.env.REACT_APP_FRONTEND_URL);
     });
-  }
-);
+  })(req, res, next);
+});
 
 // test route to check if login is working and getting proper user info
 router.get("/protected", isLoggedIn, (req, res) => { //example protected route

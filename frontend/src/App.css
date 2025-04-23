@@ -12,6 +12,7 @@
   --SwampGreen: #4C704F;
   --GatorGreen: #95F09B;
   --Mint: #DBF0E3;
+  --OffBlack: #141414;
 }
 
 body{
@@ -64,7 +65,7 @@ body{
   margin: 0;
   font-size: 3vmin;
   font-family: "Articulat", sans-serif;
-  color: black;
+  color: white;
   letter-spacing: 0.5px;
 }
 
@@ -72,7 +73,7 @@ body{
   margin: 0;
   font-size: 3vmin;
   font-family: "Articulat", sans-serif;
-  color: black;
+  color: white;
   line-height: 8vmin;
 }
 
@@ -125,36 +126,38 @@ body{
   margin-left: auto;
   margin-right: auto;
   padding: 6px;
-  background-color: white;
+  background-color: black;
   width: 60vw;
   height: 6vmin;
   font-size: 3.5vmin;
   border-radius: 5vmin;
   border-color: var(--GatorGreen);
   font-family: "articulat", sans-serif;
+  color: white;
 }
 
 .InputHeader {
   font-size: 3vmin;
   font-family: "Articulat", sans-serif;
-  border-top: lightgrey 1px solid;
+  border-top: var(--OffBlack) 1px solid;
   padding-top: 2vmin;
 }
 
 .InputField input[type=text]{
   padding: 6px;
-  background-color: #edffee;
+  background-color: var(--OffBlack);
   width: 50vw;
   font-size: 3vmin;
   border-radius: 10px;
   font-family: "Articulat", sans-serif;
   margin: 1vmin;
   border: none;
+  color: white;
 }
 
 .ParagraphField textarea {
   padding: 6px;
-  background-color: #edffee;
+  background-color: var(--OffBlack);
   width: 50vw;
   font-size: 3vmin;
   font-family: "Articulat", sans-serif;
@@ -162,24 +165,26 @@ body{
   margin: 1vmin;
   height: 40vmin;
   border: none;
+  color: white;
 }
 
 .PriceInput input[type=text]{
   padding: 6px;
-  background-color: #edffee;
+  background-color: var(--OffBlack);
   width: 3vw;
   font-size: 3vmin;
   border-radius: 10px;
   font-family: "Articulat", sans-serif;
   margin: 1vmin;
   border: none;
+  color: white;
 }
 
 .Button {
   text-decoration: none;
   font-size: 3vmin;
   background-image: linear-gradient(to bottom right, mediumspringgreen, var(--GatorGreen), var(--GatorGreen));
-  color: white;
+  color: var(--OffBlack);
   cursor: pointer;
   font-family: "Quasimoda", sans-serif;
   border-radius: 20px;
@@ -194,10 +199,11 @@ body{
   text-decoration: none;
   font-size: 3vmin;
   background-image: linear-gradient(to bottom right, mediumspringgreen, var(--GatorGreen), var(--GatorGreen));
-  color: white;
+  color: var(--OffBlack);
   cursor: pointer;
   font-family: "Quasimoda", sans-serif;
   border-radius: 20px;
+  border: none;
   width: fit-content;
   text-align: center;
   margin-top: 3vmin;
@@ -214,7 +220,7 @@ body{
   padding: 10px;
 
   .App-header {
-    background-color: white;
+    background-color: black;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -222,7 +228,7 @@ body{
     justify-content: center;
     font-size: calc(10px + 2vmin);
     text-align: center;
-    color: #090a12;
+    color: white;
   }
 }
 
@@ -234,7 +240,7 @@ body{
 .CardBody {
   display: flex;
   position: relative;
-  background-color: white;
+  background-color: var(--OffBlack);
 }
 
 .CardImage {
@@ -256,43 +262,44 @@ body{
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   flex-wrap: wrap;
+  background-color: var(--OffBlack);
 }
 
 .CardText {
   display: flex;
   font-family: "Quasimoda", sans-serif;
-  color: black;
+  color: white;
   margin-left: 5vmin;
 }
 
 .PriceCard {
   display: flex;
   position: absolute;
-  top: 6vmin;
-  right: 2vmin;
+  top: 5vmin;
+  right: 6vmin;
 }
 
 .CardPrice {
   font-family: "Articulat", sans-serif;
   font-size: 7vmin;
-  color: black;
+  color: white;
 }
 
 .CardLink {
   font-family: "Quasimoda", sans-serif;
   font-size: 4vmin;
-  color: black;
+  color: white;
   margin-left: 5vmin;
   margin-top: 3vmin;
   text-wrap: pretty;
 
   a:visited {
-    color: black;
+    color: white;
     text-decoration: none;
   }
 
   a:link {
-    color: black;
+    color: white;
     text-decoration: none;
   }
   
@@ -302,12 +309,13 @@ body{
   display: flex;
   height: 88vh;
   font-family: Arial, sans-serif;
+  color: white;
 }
 
 /* Left Panel - Chat List */
 .chat-list {
   width: 25%;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid var(--OffBlack);
   padding: 16px;
   overflow-y: auto;
 }
@@ -322,7 +330,7 @@ body{
 
 .chat-preview:hover,
 .chat-preview.active {
-  background-color: #f0f0f0;
+  background-color: var(--OffBlack);
 }
 
 .chat-user {
@@ -331,7 +339,7 @@ body{
 
 .chat-last-message {
   font-size: 0.9em;
-  color: #666;
+  color: #bdbdbd;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -365,11 +373,12 @@ body{
   align-self: flex-end;
   background-color: #cce5ff;
   text-align: right;
+  color: black;
 }
 
 .chat-bubble.received {
   align-self: flex-start;
-  background-color: #e0e0e0;
+  background-color: var(--OffBlack);
   text-align: left;
 }
 
@@ -377,7 +386,7 @@ body{
   display: flex;
   gap: 8px;
   padding-top: 12px;
-  background-color: white; /* Optional: makes it clear on scroll */
+  background-color: black; /* Optional: makes it clear on scroll */
   position: sticky; /* or remove this if not needed */
   bottom: 0;
 }
@@ -385,7 +394,7 @@ body{
 .chat-input input {
   flex-grow: 1;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--OffBlack);
   border-radius: 4px;
 }
 

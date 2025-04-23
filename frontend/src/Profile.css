@@ -12,6 +12,7 @@
     --SwampGreen: #4C704F;
     --GatorGreen: #95F09B;
     --Mint: #DBF0E3;
+    --OffBlack: #141414;
 }
 
 input[type="file"] {
@@ -32,7 +33,7 @@ input[type="file"] {
 
 .ProfileCard {
     display: flex;
-    background-color: white;
+    background-color: var(--OffBlack);
     border-radius: 80px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     overflow: hidden;

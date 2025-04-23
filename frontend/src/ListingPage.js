@@ -65,7 +65,7 @@ function ListingPage() {
 
 
         <div className="listing-info">
-          <h1>{listing.title}</h1>
+          <h1 className={"ContentSubHeader"}>{listing.title}</h1>
           <p className="listing-price">${listing.price}</p>
           <p className="listing-description">{listing.description}</p>
           <div className="listing-tags">

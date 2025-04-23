@@ -90,7 +90,7 @@ html, body, #root {
   
   .card {
     display: flex;
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: var(--OffBlack);
     border-radius: 80px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -120,9 +120,10 @@ html, body, #root {
   .card-text h2 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+      color: whitesmoke;
   }
   
   .card-text p {
     font-size: 1.1rem;
-    color: #555;
+    color: whitesmoke;
   }

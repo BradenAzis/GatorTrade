@@ -46,10 +46,10 @@ const Landing = () => {
             gl={{ preserveDrawingBuffer: true }}
             camera={{ position: [0, 0, 0], fov: 40 }}
           >
-            <color attach="background" args={["#FFFFFF"]} />
+            <color attach="background" args={["#000000"]} />
             <Suspense fallback={null}>
               <ambientLight intensity={.1} />
-              <directionalLight position={[2, 5, 2]} intensity={3}/>
+              <directionalLight position={[2, 5, 2]} intensity={1}/>
               <BackgroundScene />
               <OrbitControls enableZoom={false} enablePan={false} />
             </Suspense>

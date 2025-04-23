@@ -62,7 +62,7 @@
 .listing-info {
     flex: 1;
     min-width: 280px;
-    background: #fdfdfd;
+    background: black;
     padding: 24px;
     border-radius: 12px;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
@@ -82,25 +82,27 @@
     left: 0;
     width: 100%;
     padding: 16px 32px;
-    background-color: #f1f1f1;
-    border-top: 1px solid #ddd;
+    background-color: var(--OffBlack);
+    border-top: 1px solid black;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.95rem;
     z-index: 10;
+    color: white
 }
   
 .seller-text {
     flex: 1;
+    color: white;
 }
 
 .ContactSeller {
     text-decoration: none;
     font-size: 3vmin;
     background-image: linear-gradient(to bottom right, mediumspringgreen, var(--GatorGreen), var(--GatorGreen));
-    color: white;
+    color: black;
     cursor: pointer;
     font-family: "Quasimoda", sans-serif;
     border-radius: 20px;
@@ -121,9 +123,10 @@
 }
   
 .tag {
-    background-color: #eee;
+    background-color: var(--SwampGreen);
     padding: 6px 12px;
     border-radius: 16px;
     margin-right: 8px;
     font-size: 0.9rem;
+    color: #e6e6e6;
 }

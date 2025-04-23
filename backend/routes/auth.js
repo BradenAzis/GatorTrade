@@ -14,6 +14,7 @@ router.get("/google/callback", passport.authenticate("google", { failureRedirect
     // ensure the session is created
     req.login(req.user, (err) => {
       if (err) {
+        console.log(err);
         return res.redirect("/auth/failure");
       }
       // Now that the session is set, redirect to frontend

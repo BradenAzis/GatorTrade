@@ -13,7 +13,7 @@ function UserProfile() {
     // All listings are pulled
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get("http://localhost:5001/listings");
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URI}/listings`);
             setListings(response.data);
             console.log(response.data);
         }
@@ -24,7 +24,7 @@ function UserProfile() {
     useEffect(() => {
         const fetchCurrentUser = async () => {
             try {
-                const res = await axios.get(`http://localhost:5001/auth/${id}`, {
+                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URI}/auth/${id}`, {
                     withCredentials: true
                 });
                 setUserInfo(res.data);

@@ -1,3 +1,19 @@
+@font-face {
+    font-family: Quasimoda;
+    src:url("resources/fonts/Quasimoda Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: Articulat;
+    src:url("resources/fonts/ArticulatCF-Medium.ttf") format("truetype");
+}
+
+:root {
+    --SwampGreen: #4C704F;
+    --GatorGreen: #95F09B;
+    --Mint: #DBF0E3;
+}
+
 .listing-main {
     display: flex;
     flex-direction: row;
@@ -69,15 +85,43 @@
     box-sizing: border-box;
 }
 
+.listing-profile {
+    font-family: "Articulat", sans-serif;
+    font-size: 3vmin;
+    color: black;
+    margin-bottom: 3vmin;
+
+    a:visited {
+        color: black;
+        text-decoration: none;
+    }
+
+    a:link {
+        color: black;
+        text-decoration: none;
+        margin-top: 1vmin;
+        width: 100%;
+    }
+
+    img {
+        border-radius: 50%;
+        height: 5vmin;
+        width: 5vmin;
+        object-fit: cover;
+        margin-right: 2vmin;
+    }
+}
+
 .listing-price {
-    color: green;
-    font-weight: bold;
-    font-size: 1.5rem;
+    color: var(--SwampGreen);
+    font-family: "Articulat", sans-serif;
+    font-size: 2rem;
     margin-bottom: 12px;
 }
   
+/* Note: On certain screens this behaves differently. Sometimes will have whitespace above (intended), others just covers a bit and requires scrolling. Low priority to fix. */
 .seller-details {
-    position: fixed;
+    position: sticky;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -112,18 +156,29 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 24px;
-    padding-bottom: 160px
 }
 
 .listing-tags {
-    margin-bottom: 16px;
+    font-family: "Articulat", sans-serif;
+    margin-top: 6vmin;
+    margin-bottom: 2vmin;
 }
   
 .tag {
-    background-color: #eee;
-    padding: 6px 12px;
-    border-radius: 16px;
-    margin-right: 8px;
-    font-size: 0.9rem;
+    background-color: var(--Mint);
+    font-family: "Articulat", sans-serif;
+    padding: 1vmin 2vmin;
+    border-radius: 3vmin;
+    margin-right: 2vmin;
+    font-size: 1rem;
+}
+
+.listing-title {
+    font-family: "Quasimoda", sans-serif;
+    font-size: 2rem;
+}
+
+.listing-description {
+    font-family: "Articulat", sans-serif;
+    letter-spacing: 0.5px;
 }

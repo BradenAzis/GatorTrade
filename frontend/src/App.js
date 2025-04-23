@@ -18,7 +18,9 @@ function App() {
 
     // Request user information from the backend
     const CheckUserState = async () => {
-        const response = await fetch('http://localhost:5001/auth/me', {
+        console.log(process.env.REACT_APP_BACKEND_URI)
+        console.log(process.env.REACT_APP_FRONTEND_URL)
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URI}/auth/me`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,7 +32,7 @@ function App() {
         if (!response.ok) {
             console.log(response);
             setButtonName("Login")
-            setButtonURL('http://localhost:5001/auth/google')
+            setButtonURL(`${process.env.REACT_APP_BACKEND_URI}/auth/google`)
             const params = new URLSearchParams(window.location.search);
             if (params.get('loginFailed') === 'true') {
                 alert('Authentication failed. Google accounts must be affiliated with a ufl email.');
@@ -40,7 +42,7 @@ function App() {
         else{
             console.log(response);
             setButtonName("My Profile")
-            setButtonURL('http://localhost:3000/profile')
+            setButtonURL(`${process.env.REACT_APP_FRONTEND_URL}/profile`)
             document.getElementById("listingsButton").style.visibility = "visible";
             document.getElementById("listingsButton").style.width = "fit-content";
             document.getElementById("messagesButton").style.visibility = "visible";

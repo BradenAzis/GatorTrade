@@ -18,31 +18,33 @@ function App() {
     const [ButtonURL, setButtonURL] = useState(null);
 
     const CheckUserState = async () => {
-        console.log(process.env.REACT_APP_BACKEND_URI)
-        console.log(process.env.REACT_APP_FRONTEND_URL)
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URI}/auth/me`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include'
-        });
-
-        if (!response.ok) {
-            console.log(response);
-            console.log("AAAAAAAAAGGGGGGH")
-            setButtonName("Login")
-            setButtonURL(`${process.env.REACT_APP_BACKEND_URI}/auth/google`)
-        }
-        else{
-            console.log(response);
-            console.log("YES KING")
-            setButtonName("My Profile")
-            setButtonURL(`${process.env.REACT_APP_FRONTEND_URL}/profile`)
-            document.getElementById("listingsButton").style.visibility = "visible";
-            document.getElementById("listingsButton").style.width = "fit-content";
-            document.getElementById("messagesButton").style.visibility = "visible";
-            document.getElementById("messagesButton").style.width = "fit-content";
+        try {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URI}/auth/me`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include'
+            });
+    
+            if (!response.ok) {
+                console.log("Not logged in", response);
+                setButtonName("Login");
+                setButtonURL(`${process.env.REACT_APP_BACKEND_URI}/auth/google`);
+            } else {
+                const data = await response.json();
+                console.log("Logged in user:", data);
+                setButtonName("My Profile");
+                setButtonURL(`${process.env.REACT_APP_FRONTEND_URL}/profile`);
+                document.getElementById("listingsButton").style.visibility = "visible";
+                document.getElementById("listingsButton").style.width = "fit-content";
+                document.getElementById("messagesButton").style.visibility = "visible";
+                document.getElementById("messagesButton").style.width = "fit-content";
+            }
+        } catch (error) {
+            console.error("Error checking login state:", error);
+            setButtonName("Login");
+            setButtonURL(`${process.env.REACT_APP_BACKEND_URI}/auth/google`);
         }
 
     }

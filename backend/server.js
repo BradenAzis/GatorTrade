@@ -18,7 +18,11 @@ require("./config/passport");
 
 const app = express();
 
-app.use(cors({origin : ['http://localhost:3000', 'https://gatortrade.vercel.app', 'https://gatortrade-ugoh.onrender.com'], credentials : true }));
+app.use(cors({
+  origin : ['http://localhost:3000', 'https://gatortrade.vercel.app', 'https://gatortrade-ugoh.onrender.com'], 
+  credentials : true,
+  methods: ['GET', 'POST', 'PUT'],
+}));
 
 const server = http.createServer(app); // socket.io
 const io = socketIO(server, {
@@ -40,7 +44,7 @@ app.use(session({ //client session management
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({mongoUrl: process.env.MONGO_URI, collectionName: 'sessions'}),
-  cookie:{maxAge: 1000 * 60 * 60, sameSite: 'none', secure: true} //cookie lasts 1 hour (1000ms * 60 * 60)
+  cookie:{maxAge: 1000 * 60 * 60, sameSite: 'none', secure: true, httpOnly: true} //cookie lasts 1 hour (1000ms * 60 * 60)
 }));
 app.use(passport.initialize());
 app.use(passport.session());

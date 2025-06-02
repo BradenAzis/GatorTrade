@@ -131,7 +131,7 @@ function Profile(){
     }
 
     return (
-        <div>
+        <div> 
             {/*Profile card with name, profile picture and bio, as well as input handlers to allow changing them*/}
             <div className="ProfileCardsSection">
             <div className={"ProfileCard"}>

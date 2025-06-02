@@ -23,7 +23,6 @@
 
 .PageContent {
   display: flex;
-  background: var(--bg-primary);
   flex-direction: column;
   margin: 1vmin 20vmin 10vmin 20vmin;
   justify-content: center;
@@ -56,7 +55,7 @@
   font-size: 3vmin;
   font-family: "Articulat", sans-serif;
   letter-spacing: 0.5px;
-  color: black;
+  color: var(--text-primary);
   letter-spacing: 0.5px;
 }
 
@@ -64,7 +63,7 @@
   margin: 0;
   font-size: 3vmin;
   font-family: "Articulat", sans-serif;
-  color: black;
+  color: var(--text-primary);
   line-height: 8vmin;
 }
 
@@ -117,7 +116,7 @@
   margin-left: 5vmin;
   margin-right: auto;
   padding: 6px;
-  background-color: white;
+  background-color: var(--bg-primary);
   width: 60vw;
   height: 6vmin;
   font-size: 3.5vmin;
@@ -171,7 +170,7 @@
   text-decoration: none;
   font-size: 3vmin;
   background-image: linear-gradient(to bottom right, mediumspringgreen, var(--GatorGreen), var(--GatorGreen));
-  color: white;
+  color: var(--text-inverted);
   cursor: pointer;
   font-family: "Quasimoda", sans-serif;
   border-radius: 20px;
@@ -185,7 +184,7 @@
 .PostButton {
   text-decoration: none;
   background-image: linear-gradient(to bottom right, mediumspringgreen, var(--GatorGreen), var(--GatorGreen));
-  color: white;
+  color: var(--text-inverted);
   cursor: pointer;
   font-family: "Quasimoda", sans-serif;
   font-size: 4vmin;
@@ -201,7 +200,7 @@
   text-decoration: none;
   font-size: 3vmin;
   background-image: linear-gradient(to bottom right, mediumspringgreen, var(--GatorGreen), var(--GatorGreen));
-  color: white;
+  color: var(--text-inverted);
   cursor: pointer;
   font-family: "Quasimoda", sans-serif;
   border-radius: 20px;
@@ -238,10 +237,14 @@
   margin-top: 6vmin;
 }
 
+.Card {
+  background-color: var(--bg-secondary);
+}
+
 .CardBody {
   display: flex;
   position: relative;
-  background-color: white;
+  background-color: var(--bg-secondary);
 }
 
 .CardImage {
@@ -288,18 +291,18 @@
 .CardLink {
   font-family: "Quasimoda", sans-serif;
   font-size: 4vmin;
-  color: black;
+  color: var(--text-primary);
   margin-left: 5vmin;
   margin-top: 2vmin;
   text-wrap: pretty;
 
   a:visited {
-    color: black;
+    color: var(--text-primary);
     text-decoration: none;
   }
 
   a:link {
-    color: black;
+    color: var(--text-primary);
     text-decoration: none;
   }
 }
@@ -307,7 +310,7 @@
 .CardProfile {
   font-family: "Articulat", sans-serif;
   font-size: 2.5vmin;
-  color: black;
+  color: var(--text-primary);
   top: 10vmin;
   display: flex;
   position: absolute;
@@ -315,12 +318,12 @@
   width: 40vmin;
 
   a:visited {
-    color: black;
+    color: var(--text-primary);
     text-decoration: none;
   }
 
   a:link {
-    color: black;
+    color: var(--text-primary);
     text-decoration: none;
     margin-top: 1vmin;
     width: 100%;
@@ -344,7 +347,7 @@
 /* Left Panel - Chat List */
 .chat-list {
   width: 25%;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid var(--bg-secondary);
   padding: 16px;
   overflow-y: auto;
 }
@@ -354,12 +357,13 @@
   border-radius: 4px;
   cursor: pointer;
   margin-bottom: 8px;
-  transition: background 0.2s ease;
+  /*transition: background 0.2s ease;*/
+  color: var(--text-primary)
 }
-
+/*FIXME need color variable for message field hover*/
 .chat-preview:hover,
 .chat-preview.active {
-  background-color: #f0f0f0;
+  background-color: var(--bg-secondary); 
 }
 
 .chat-user {
@@ -368,7 +372,7 @@
 
 .chat-last-message {
   font-size: 0.9em;
-  color: #666;
+  color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -400,21 +404,22 @@
 
 .chat-bubble.sent {
   align-self: flex-end;
-  background-color: #cce5ff;
+  background-color: var(--GatorGreen);
   text-align: right;
 }
 
 .chat-bubble.received {
   align-self: flex-start;
-  background-color: #e0e0e0;
+  background-color: var(--bg-secondary);
   text-align: left;
+  color: var(--text-primary);
 }
 
 .chat-input {
   display: flex;
   gap: 8px;
   padding-top: 12px;
-  background-color: white; /* Optional: makes it clear on scroll */
+  background-color: var(--bg-primary); /* Optional: makes it clear on scroll */
   position: sticky; /* or remove this if not needed */
   bottom: 0;
 }
@@ -423,14 +428,16 @@
   flex-grow: 1;
   padding: 8px;
   border: 1px solid #ccc;
+  background-color: var(--bg-secondary);
   border-radius: 4px;
+  color: var(--text-primary);
 }
 
 .chat-input button {
   padding: 8px 16px;
   border: none;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--GatorGreen);
+  color: #1c1c1c;
   border-radius: 4px;
   cursor: pointer;
 }

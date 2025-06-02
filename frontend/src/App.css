@@ -8,12 +8,6 @@
   src:url("resources/fonts/ArticulatCF-Medium.ttf") format("truetype");
 }
 
-:root {
-  --SwampGreen: #4C704F;
-  --GatorGreen: #95F09B;
-  --Mint: #DBF0E3;
-}
-
 .NavBar {
   position: sticky;
   margin-top: 1vmin;
@@ -29,6 +23,7 @@
 
 .PageContent {
   display: flex;
+  background: var(--bg-primary);
   flex-direction: column;
   margin: 1vmin 20vmin 10vmin 20vmin;
   justify-content: center;

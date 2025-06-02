@@ -43,8 +43,11 @@ app.use(session({ //client session management
   secret: process.env.SESSION_SECRET, //secret used to create session ID cookie
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({mongoUrl: process.env.MONGO_URI, collectionName: 'sessions'}),
-  cookie:{maxAge: 1000 * 60 * 60, sameSite: 'none', secure: true, httpOnly: true} //cookie lasts 1 hour (1000ms * 60 * 60)
+  cookie:{
+    maxAge: 1000 * 60 * 60, 
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', 
+    secure: process.env.NODE_ENV === 'production',
+    httpOnly: true} //cookie lasts 1 hour (1000ms * 60 * 60)
 }));
 app.use(passport.initialize());
 app.use(passport.session());

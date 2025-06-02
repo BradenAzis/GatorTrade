@@ -46,6 +46,3 @@ passport.serializeUser(function(user, done){
 passport.deserializeUser(function(user, done){
     done(null, user);
 });
-
-// debugging
-console.log('GOOGLE_CLIENT_ID:', process.env.GOOGLE_CLIENT_ID);

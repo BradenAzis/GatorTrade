@@ -1,3 +1,4 @@
+import "./theme.css";
 import './App.css';
 import ListingPage from './ListingPage';
 import LandingPage from './LandingPage';
@@ -9,10 +10,11 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import logo from './resources/images/GatorTradeLogo.png';
 import {useEffect, useState} from "react";
 import UserProfile from "./UserProfile";
-
+import useTheme from "./useTheme";
 
 function App() {
 
+    const [theme, toggleTheme] = useTheme();
     const [ButtonName, setButtonName] = useState(null);
     const [ButtonURL, setButtonURL] = useState(null);
 
@@ -65,6 +67,9 @@ function App() {
                 </a>
             </div>
             <div className="PageButton">
+                <button onClick={toggleTheme}>
+                    {theme === 'dark' ? 'Light' : 'Dark'} Mode
+                </button>
                 <a href={ButtonURL}>{ButtonName}</a>
                 <a href={"/Listings"} id={"listingsButton"} style={{visibility: "hidden", width: "0"}}>Listings</a>
                 <a href="/Messages" id={"messagesButton"} style={{visibility: "hidden", width: "0"}}>Messages</a>

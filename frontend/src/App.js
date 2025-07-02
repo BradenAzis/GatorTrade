@@ -63,16 +63,24 @@ function App() {
         <div className="NavBar">
             <div className="App-logo">
                 <a href="/">
-                    <img src={logo} alt={"GatorTrade"}></img>
+                    <img src={logo} alt={"GatorTrade"} />
                 </a>
             </div>
-            <div className="PageButton">
-                <button onClick={toggleTheme}>
-                    {theme === 'dark' ? 'Light' : 'Dark'} Mode
-                </button>
-                <a href={ButtonURL}>{ButtonName}</a>
-                <a href={"/Listings"} id={"listingsButton"} style={{visibility: "hidden", width: "0"}}>Listings</a>
-                <a href="/Messages" id={"messagesButton"} style={{visibility: "hidden", width: "0"}}>Messages</a>
+            <div className="NavLinks">
+                <div className="PageButton">
+                    <a href={ButtonURL}>{ButtonName}</a>
+                </div>
+                <div className="PageButton" id="messagesButton" style={{ visibility: "hidden", width: "0" }}>
+                    <a href="/Messages">Messages</a>
+                </div>
+                <div className="PageButton" id="listingsButton" style={{ visibility: "hidden", width: "0" }}>
+                    <a href="/Listings">Listings</a>
+                </div>
+                <div className="PageButton">
+                    <button onClick={toggleTheme}>
+                        {theme === 'dark' ? 'Light' : 'Dark'} Mode
+                    </button>
+                </div>
             </div>
         </div>
         <Routes>

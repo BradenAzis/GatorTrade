@@ -29,7 +29,6 @@ html, body, #root {
     position: relative;
     z-index: 1;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #212529;
     padding: 0;
     margin: 0;
     backdrop-filter: blur(0); /* optional for better contrast */
@@ -43,7 +42,7 @@ html, body, #root {
     justify-content: center;
     align-items: center;
     border-radius: 80px;
-    color: #efefef;
+    color: var(--text-primary);
     text-align: center;
     padding: 0 1rem;
   }
@@ -90,7 +89,7 @@ html, body, #root {
   
   .card {
     display: flex;
-    background-color: rgba(6, 6, 6, 0.75);
+    background-color: var(--bg-secondary);
     border-radius: 80px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -118,13 +117,13 @@ html, body, #root {
   }
   
   .card-text h2 {
-    color: #95F09B;
+    color: var(--GatorGreen);
     font-size: 2rem;
     margin-bottom: 0.5rem;
   }
   
   .card-text p {
     font-size: 1.1rem;
-    color: #fafafa;
+    color: var(--text-primary);
   }
 

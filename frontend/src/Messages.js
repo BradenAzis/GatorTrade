@@ -148,6 +148,11 @@ export default function Messages() {
             type="text"
             value={newMessage}
             onChange={e => setNewMessage(e.target.value)}
+            onKeyDown={e => { if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSendMessage();
+              }
+            }}
             placeholder="Type a message..."
           />
           <button onClick={handleSendMessage}>Send</button>

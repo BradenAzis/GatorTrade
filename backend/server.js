@@ -3,6 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const socketIO = require('socket.io');
+const MongoStore = require('connect-mongo');
 const mongoose = require("mongoose");
 const http = require('http');
 const cors = require("cors");
@@ -17,7 +18,11 @@ require("./config/passport");
 
 const app = express();
 
-app.use(cors({origin : ['http://localhost:3000', 'https://gatortrade.vercel.app'], credentials : true }));
+app.use(cors({
+  origin : ['http://localhost:3000', 'https://gatortrade.vercel.app', 'https://gatortrade-ugoh.onrender.com'], 
+  credentials : true,
+  methods: ['GET', 'POST', 'PUT'],
+}));
 
 const server = http.createServer(app); // socket.io
 const io = socketIO(server, {
@@ -38,7 +43,11 @@ app.use(session({ //client session management
   secret: process.env.SESSION_SECRET, //secret used to create session ID cookie
   resave: false,
   saveUninitialized: false,
-  cookie:{maxAge: 1000 * 60 * 60, sameSite: 'lax', secure: false} //cookie lasts 1 hour (1000ms * 60 * 60)
+  cookie:{
+    maxAge: 1000 * 60 * 60, 
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', 
+    secure: process.env.NODE_ENV === 'production',
+    httpOnly: true} //cookie lasts 1 hour (1000ms * 60 * 60)
 }));
 app.use(passport.initialize());
 app.use(passport.session());

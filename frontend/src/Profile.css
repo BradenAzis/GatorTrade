@@ -8,11 +8,9 @@
     src:url("resources/fonts/ArticulatCF-Medium.ttf") format("truetype");
 }
 
-:root {
-    --SwampGreen: #4C704F;
-    --GatorGreen: #95F09B;
-    --Mint: #DBF0E3;
-}
+html, body {
+    background-color: var(--bg-primary);
+  }
 
 input[type="file"] {
     display: none;
@@ -32,7 +30,7 @@ input[type="file"] {
 
 .ProfileCard {
     display: flex;
-    background-color: white;
+    background-color: var(--bg-secondary);
     border-radius: 80px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     overflow: hidden;

@@ -208,6 +208,10 @@
   margin-top: 6vmin;
   height: fit-content;
 }
+.PostButton:hover {
+  filter: brightness(1.15);
+  transition: filter 0.2s ease;
+}
 
 .UploadButton input[type=file]{
   text-decoration: none;

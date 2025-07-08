@@ -193,6 +193,10 @@
   margin-top: 3vmin;
   height: 6vmin;
 }
+.Button:hover {
+  filter: brightness(1.2);
+  transition: filter 0.2s ease;
+}
 
 .PostButton {
   text-decoration: none;
@@ -209,7 +213,7 @@
   height: fit-content;
 }
 .PostButton:hover {
-  filter: brightness(1.15);
+  filter: brightness(1.2);
   transition: filter 0.2s ease;
 }
 
@@ -235,6 +239,7 @@
   max-height: 27vmin;
   max-width: 27vmin;
   padding: 10px;
+  border-radius: 12px;
 
   .App-header {
     background-color: white;
@@ -247,6 +252,10 @@
     text-align: center;
     color: #090a12;
   }
+}
+.App-logo img:hover {
+  background-color: var(--bg-secondary); /* light green background */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .UserListings {
